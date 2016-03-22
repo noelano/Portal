@@ -1,6 +1,4 @@
 from livewires import games, color
-#from Player import *
-#import os, random, string
 
 games.init(screen_width = 1100, screen_height = 700, fps = 50)
 

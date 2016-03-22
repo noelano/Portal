@@ -1,0 +1,93 @@
+from livewires import games, color
+from portalSprite import *
+
+# Makes no sense having the init here but it works
+# Must be required the first time a game object is initialised, which happens to be in the player???
+
+class Player(games.Sprite):
+    """ The player controlled character """
+
+    image1 = games.load_image(r"Images\atlas1.bmp")
+    image2 = games.load_image(r"Images\atlas2.bmp")
+    image3 = games.load_image(r"Images\atlas5.bmp")
+    image4 = games.load_image(r"Images\atlas6.bmp")
+    floor = 5 * games.screen.height / 7
+    gravity = 0.02  # So jump looks more natural
+
+    def __init__(self, game, x, y):
+        """ Initialize the sprite. """
+        super(Player, self).__init__(image = Player.image1, x = x, y = y, dx = 0, dy = 0)
+        self.game = game
+        self.counter = 0    # To control the refresh of the sprite image
+
+    def update(self):
+        """ Move based on keys pressed. """
+        self.counter += 1
+
+        if self.y >= Player.floor and self.dy != 0:
+            self.dy = 0
+            self.y = Player.floor
+        elif self.dy != 0:
+            self.dy += Player.gravity
+
+        if self.dy == 0 and self.x > 10:
+            if games.keyboard.is_pressed(games.K_LEFT):
+                self.dx = -1
+                if self.image in (Player.image1, Player.image2):
+                    self.image = Player.image3
+            if games.keyboard.is_pressed(games.K_RIGHT):
+                self.dx = 1
+                if self.image in (Player.image3, Player.image4):
+                    self.image = Player.image1
+            if games.keyboard.is_pressed(games.K_SPACE):
+                self.dy = -2
+            if not (games.keyboard.is_pressed(games.K_RIGHT) or games.keyboard.is_pressed(games.K_LEFT)):
+                self.dx = 0
+
+        # Stop player moving off screen to left
+        if self.x < 40:
+            self.x = 40
+            self.dx = 0
+
+        # Alternate between each image while moving to animate the sprite
+        if self.dx > 0 and self.dy == 0:
+            if self.counter % 30 == 0:
+                self.image = Player.image2
+            elif self.counter % 15 == 0:
+                self.image = Player.image1
+        elif self.dx < 0 and self.dy == 0:
+            if self.counter % 30 == 0:
+                self.image = Player.image3
+            elif self.counter % 15 == 0:
+                self.image = Player.image4
+
+        self.checkWin()
+
+    def checkWin(self):
+        """ See if the goal has been reached """
+
+        if self.x > games.screen.width:
+            end_message = games.Message(value = "Congratulations",
+                                    size = 90,
+                                    color = color.blue,
+                                    x = games.screen.width/2,
+                                    y = games.screen.height/2,
+                                    lifetime = 1 * games.screen.fps,
+                                    after_death = self.game.endPlayerGame)
+            games.screen.add(end_message)
+
+    def firePortal(self):
+        """
+        Shoot a portal in the direction the user is facing
+        """
+
+        if games.keyboard.is_pressed(games.K_A):
+            orangeHalo = PortalHalo()
+            games.screen.add(orangeHalo)
+            games.portals.add(orangeHalo)
+
+        if games.keyboard.is_pressed(games.K_D):
+            blueHalo = PortalHalo()
+            games.screen.add(blueHalo)
+            games.portals.add(blueHalo)
+
