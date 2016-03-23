@@ -1,5 +1,6 @@
 from livewires import games, color
 from portalSprite import *
+from reticule import *
 
 # Makes no sense having the init here but it works
 # Must be required the first time a game object is initialised, which happens to be in the player???
@@ -23,6 +24,9 @@ class Player(games.Sprite):
         self.top = y - 31
         self.left = x - 21
         self.right = x + 21
+        self.reticule = Reticule(self.game, self, self.x, self.y)
+        games.screen.add(self.reticule)
+        self.game.reticule.append(self.reticule)
 
     def update(self):
         """ Move based on keys pressed. """
@@ -34,10 +38,12 @@ class Player(games.Sprite):
         if self.dy == 0:
             if games.keyboard.is_pressed(games.K_LEFT):
                 self.dx = -1
+                self.reticule.direction = 0
                 if self.image in (Player.image1, Player.image2):
                     self.image = Player.image3
             if games.keyboard.is_pressed(games.K_RIGHT):
                 self.dx = 1
+                self.reticule.direction = 1
                 if self.image in (Player.image3, Player.image4):
                     self.image = Player.image1
             if games.keyboard.is_pressed(games.K_SPACE):

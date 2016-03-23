@@ -77,6 +77,7 @@ class PortalGame():
         self.sprites = []
         self.portals = []
         self.surfaces = []
+        self.reticule = []
 
         player = Player(game = self,
                     x = games.screen.width/7,

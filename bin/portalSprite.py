@@ -1,37 +1,34 @@
 from livewires import games, color
+import math
 
 games.init(screen_width = 1100, screen_height = 700, fps = 50)
 
-class PortalHalo(games.Sprite):
+class PortalShot(games.Sprite):
     """
-    Portal object
+    Object to create portal
     """
-    portalo = games.load_image(r"Images\portalo.bmp")
-    #portalb = games.load_image(r"Images\portalb.bmp")
 
-    def __init__(self, game, x, y, menu):
+    def __init__(self, game, x, y, angle):
         """ Initialize the sprite. """
-        super(PortalHalo, self).__init__(image = PortalHalo.portalo, x = x, y = y, dx = 0, dy = 0)
+        velocityFactor = 3
+        dx = velocityFactor * math.sin(angle)
+        dy = velocityFactor * -math.cos(angle)
+
+        super(PortalShot, self).__init__(image = None, x = x, y = y, dx = dx, dy = dy)
         self.game = game
-        self.twin = None
+        self.angle = angle
 
     def update(self):
         """
-        Move the pointer up and down through the options list
-        If the user hits enter proceed with the selected option
+        Move in a straight line until a surface is hit
         """
-        self.counter += 1
 
-        # Because we have 50 fps a single button press could lead to a number
-        # of updates ie one press of 'up' could scroll up 6 times.
-        # To prevent this we add a buffer of 10 frames, which is what the counter
-        # variable is used for
+        # Destroy if we move off screen
+        if (self.x < 0 or self.x > 1100 or y < 0 or y > 700):
+            self.destroy()
 
-        if self.counter % 13 == 0:
-            if self.num_options > 0:
-                if games.keyboard.is_pressed(games.K_UP):
-                    self.move(-1)
-                if games.keyboard.is_pressed(games.K_DOWN):
-                    self.move(1)
-            if games.keyboard.is_pressed(games.K_RETURN):
-                self.enter()
+        for sprite in self.overlapping_sprites:
+            # Only interact with surface
+            if sprite in self.game.surfaces:
+                sprite.portal = 1
+                self.destroy()
