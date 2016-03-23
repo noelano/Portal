@@ -25,11 +25,9 @@ class Surface(games.Sprite):
         self.choice = random.randint(0,2)
         super(Surface, self).__init__(image = Surface.images[self.choice], x = x, y = y, dx = 0, dy = 0)
         self.game = game
-        self.bottom = y + 40
-        self.top = y - 40
-        self.left = x - 40
-        self.right = x + 40
         self.portal = 0     # Used for transforming into portal
+        self.orientation = 0
+        self.colour = 0
 
     def update(self):
         """
@@ -40,7 +38,7 @@ class Surface(games.Sprite):
             # Don't want to make changes to any other surfaces
             if (sprite not in self.game.surfaces and sprite not in self.game.neutrinos):
 
-                if self.portal == 0:
+                if (self.portal == 0 or not self.game.blue or not self.game.orange):
                     # Calculate distances to determine where overlap is
                     a = abs(self.bottom - sprite.top)
                     b = abs(self.top - sprite.bottom)
@@ -63,12 +61,42 @@ class Surface(games.Sprite):
 
                 else:
                     # In this case the surface acts as a portal
-                    sprite.x = 0
+                    if self.orientation == 0 or self.orientation == 3:
+                        sprite.dy += 0.02
+                    if (abs(sprite.x - self.x < 10) or abs(sprite.y - self.y < 10)):
+                        x_diff = 0
+                        y_diff = 0
+                        if self.colour == 0:
+                            if self.game.blue.orientation == 0:
+                                y_diff = -11
+                            elif self.game.blue.orientation == 1:
+                                x_diff = -11
+                            elif self.game.blue.orientation == 2:
+                                x_diff = 11
+                            else:
+                                y_diff = 11
+                            sprite.x = self.game.blue.x + x_diff
+                            sprite.y = self.game.blue.y + y_diff
+                        else:
+                            if self.game.orange.orientation == 0:
+                                y_diff = -11
+                            elif self.game.orange.orientation == 1:
+                                x_diff = -11
+                            elif self.game.orange.orientation == 2:
+                                x_diff = 11
+                            else:
+                                y_diff = 11
+                            sprite.x = self.game.orange.x + x_diff
+                            sprite.y = self.game.orange.y + y_diff
+
 
     def makePortal(self, colour, orientation):
         """
         Transform into a portal
         """
+        self.portal = 1
+        self.orientation = orientation
+        self.colour = colour
 
         if colour == 0:
             if self.game.orange:
@@ -83,3 +111,4 @@ class Surface(games.Sprite):
 
     def clearPortal(self):
         self.image = Surface.images[self.choice]
+        self.portal = 0

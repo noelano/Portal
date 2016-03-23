@@ -20,10 +20,6 @@ class Player(games.Sprite):
         super(Player, self).__init__(image = Player.image1, x = x, y = y, dx = 0, dy = 0)
         self.game = game
         self.counter = 0    # To control the refresh of the sprite image
-        self.bottom = y + 31
-        self.top = y - 31
-        self.left = x - 21
-        self.right = x + 21
         self.reticule = Reticule(self.game, self, self.x, self.y)
         games.screen.add(self.reticule)
         self.game.neutrinos.append(self.reticule)
@@ -35,21 +31,22 @@ class Player(games.Sprite):
         if not self.overlapping_sprites:
             self.dy += Player.gravity
 
-        if self.dy == 0:
-            if games.keyboard.is_pressed(games.K_LEFT):
+        if games.keyboard.is_pressed(games.K_LEFT):
+            if self.dy == 0:
                 self.dx = -1
-                self.reticule.direction = 0
-                if self.image in (Player.image1, Player.image2):
-                    self.image = Player.image3
-            if games.keyboard.is_pressed(games.K_RIGHT):
+            self.reticule.direction = 0
+            if self.image in (Player.image1, Player.image2):
+                self.image = Player.image3
+        if games.keyboard.is_pressed(games.K_RIGHT):
+            if self.dy == 0:
                 self.dx = 1
-                self.reticule.direction = 1
-                if self.image in (Player.image3, Player.image4):
-                    self.image = Player.image1
-            if games.keyboard.is_pressed(games.K_SPACE):
-                self.dy = -2
-            if not (games.keyboard.is_pressed(games.K_RIGHT) or games.keyboard.is_pressed(games.K_LEFT)):
-                self.dx = 0
+            self.reticule.direction = 1
+            if self.image in (Player.image3, Player.image4):
+                self.image = Player.image1
+        if self.dy == 0 and games.keyboard.is_pressed(games.K_SPACE):
+            self.dy = -2
+        if self.dy == 0 and not (games.keyboard.is_pressed(games.K_RIGHT) or games.keyboard.is_pressed(games.K_LEFT)):
+            self.dx = 0
 
         # Alternate between each image while moving to animate the sprite
         if self.dx > 0 and self.dy == 0:
