@@ -19,18 +19,19 @@ class Player(games.Sprite):
         super(Player, self).__init__(image = Player.image1, x = x, y = y, dx = 0, dy = 0)
         self.game = game
         self.counter = 0    # To control the refresh of the sprite image
+        self.bottom = y + 31
+        self.top = y - 31
+        self.left = x - 21
+        self.right = x + 21
 
     def update(self):
         """ Move based on keys pressed. """
         self.counter += 1
 
-        if self.y >= Player.floor and self.dy != 0:
-            self.dy = 0
-            self.y = Player.floor
-        elif self.dy != 0:
+        if not self.overlapping_sprites:
             self.dy += Player.gravity
 
-        if self.dy == 0 and self.x > 10:
+        if self.dy == 0:
             if games.keyboard.is_pressed(games.K_LEFT):
                 self.dx = -1
                 if self.image in (Player.image1, Player.image2):
@@ -43,11 +44,6 @@ class Player(games.Sprite):
                 self.dy = -2
             if not (games.keyboard.is_pressed(games.K_RIGHT) or games.keyboard.is_pressed(games.K_LEFT)):
                 self.dx = 0
-
-        # Stop player moving off screen to left
-        if self.x < 40:
-            self.x = 40
-            self.dx = 0
 
         # Alternate between each image while moving to animate the sprite
         if self.dx > 0 and self.dy == 0:

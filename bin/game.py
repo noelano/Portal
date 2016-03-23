@@ -80,11 +80,16 @@ class PortalGame():
 
         player = Player(game = self,
                     x = games.screen.width/7,
-                    y = 5*games.screen.height/7)
+                    y = 5*games.screen.height/7 - 80)
         games.screen.add(player)
         self.sprites.append(player)
 
-        box = Surface(game = self, x = games.screen.width/2, y = 5*games.screen.height/7)
+        for i in range(13):
+            box = Surface(game = self, x = 39 + i * 78, y = 5*games.screen.height/7)
+            games.screen.add(box)
+            self.surfaces.append(box)
+
+        box = Surface(game = self, x = 5*games.screen.width/6, y = 4*games.screen.height/7)
         games.screen.add(box)
         self.surfaces.append(box)
 
