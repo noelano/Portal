@@ -26,7 +26,7 @@ class Player(games.Sprite):
         self.right = x + 21
         self.reticule = Reticule(self.game, self, self.x, self.y)
         games.screen.add(self.reticule)
-        self.game.reticule.append(self.reticule)
+        self.game.neutrinos.append(self.reticule)
 
     def update(self):
         """ Move based on keys pressed. """
@@ -77,19 +77,4 @@ class Player(games.Sprite):
                                     lifetime = 1 * games.screen.fps,
                                     after_death = self.game.endPlayerGame)
             games.screen.add(end_message)
-
-    def firePortal(self):
-        """
-        Shoot a portal in the direction the user is facing
-        """
-
-        if games.keyboard.is_pressed(games.K_A):
-            orangeHalo = PortalHalo()
-            games.screen.add(orangeHalo)
-            games.portals.add(orangeHalo)
-
-        if games.keyboard.is_pressed(games.K_D):
-            blueHalo = PortalHalo()
-            games.screen.add(blueHalo)
-            games.portals.add(blueHalo)
 

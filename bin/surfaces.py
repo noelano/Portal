@@ -9,10 +9,21 @@ class Surface(games.Sprite):
     image2 = games.load_image(r"Images\surface2.bmp")
     image3 = games.load_image(r"Images\surface3.bmp")
     images = [image1, image2, image3]
+    orange1 = games.load_image(r"Images\orange1.bmp")
+    orange2 = games.load_image(r"Images\orange2.bmp")
+    orange3 = games.load_image(r"Images\orange3.bmp")
+    orange4 = games.load_image(r"Images\orange4.bmp")
+    oranges = [orange1, orange2, orange3, orange4]
+    blue1 = games.load_image(r"Images\blue1.bmp")
+    blue2 = games.load_image(r"Images\blue2.bmp")
+    blue3 = games.load_image(r"Images\blue3.bmp")
+    blue4 = games.load_image(r"Images\blue4.bmp")
+    blues = [blue1, blue2, blue3, blue4]
 
     def __init__(self, game, x, y):
         """ Initialize the sprite. """
-        super(Surface, self).__init__(image = random.choice(Surface.images), x = x, y = y, dx = 0, dy = 0)
+        self.choice = random.randint(0,2)
+        super(Surface, self).__init__(image = Surface.images[self.choice], x = x, y = y, dx = 0, dy = 0)
         self.game = game
         self.bottom = y + 40
         self.top = y - 40
@@ -27,7 +38,7 @@ class Surface(games.Sprite):
 
         for sprite in self.overlapping_sprites:
             # Don't want to make changes to any other surfaces
-            if (sprite not in self.game.surfaces and sprite not in self.game.reticule):
+            if (sprite not in self.game.surfaces and sprite not in self.game.neutrinos):
 
                 if self.portal == 0:
                     # Calculate distances to determine where overlap is
@@ -53,3 +64,22 @@ class Surface(games.Sprite):
                 else:
                     # In this case the surface acts as a portal
                     sprite.x = 0
+
+    def makePortal(self, colour, orientation):
+        """
+        Transform into a portal
+        """
+
+        if colour == 0:
+            if self.game.orange:
+                self.game.orange.clearPortal()
+            self.image = Surface.oranges[orientation]
+            self.game.orange = self
+        elif colour == 1:
+            if self.game.blue:
+                self.game.blue.clearPortal()
+            self.image = Surface.blues[orientation]
+            self.game.blue = self
+
+    def clearPortal(self):
+        self.image = Surface.images[self.choice]

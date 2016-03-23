@@ -73,17 +73,18 @@ class PortalGame():
         # Add info bar to top of screen
         self.infoBar()
 
-        # Add a list of sprites
-        self.sprites = []
+        # Sprite containers
         self.portals = []
         self.surfaces = []
-        self.reticule = []
+        self.neutrinos = []     # React with nothing
+
+        self.orange = None
+        self.blue = None
 
         player = Player(game = self,
                     x = games.screen.width/7,
                     y = 5*games.screen.height/7 - 80)
         games.screen.add(player)
-        self.sprites.append(player)
 
         for i in range(13):
             box = Surface(game = self, x = 39 + i * 78, y = 5*games.screen.height/7)
