@@ -1,6 +1,7 @@
 from livewires import games, color
 from portalSprite import *
 from reticule import *
+import math
 
 # Makes no sense having the init here but it works
 # Must be required the first time a game object is initialised, which happens to be in the player???
@@ -23,6 +24,7 @@ class Player(games.Sprite):
         self.reticule = Reticule(self.game, self, self.x, self.y)
         games.screen.add(self.reticule)
         self.game.neutrinos.append(self.reticule)
+        self.speed = 0
 
     def update(self):
         """ Move based on keys pressed. """
@@ -60,7 +62,7 @@ class Player(games.Sprite):
             elif self.counter % 15 == 0:
                 self.image = Player.image4
 
-        self.checkWin()
+        self.calcSpeed()
 
     def checkWin(self):
         """ See if the goal has been reached """
@@ -75,3 +77,5 @@ class Player(games.Sprite):
                                     after_death = self.game.endPlayerGame)
             games.screen.add(end_message)
 
+    def calcSpeed(self):
+        self.speed = math.sqrt(self.dx**2 + self.dy**2)

@@ -2,6 +2,9 @@ from livewires import games, color
 from player import *
 from menuPointer import *
 from surfaces import *
+from exit import *
+from hazard import *
+from utilities import loadLevel
 
 class PortalGame():
     """
@@ -64,7 +67,7 @@ class PortalGame():
 
         games.screen.mainloop()
 
-    def Level(self, level, playMode, save):
+    def Level(self, level, save):
         """
         Play the game
         """
@@ -81,19 +84,23 @@ class PortalGame():
         self.orange = None
         self.blue = None
 
-        for i in range(13):
-            box = Surface(game = self, x = 39 + i * 78, y = 5*games.screen.height/7)
+        surfaces, hazards, p, e = loadLevel(r"Levels\level1.json")
+
+        for s in surfaces:
+            box = Surface(game = self, x = s[0], y = s[1])
             games.screen.add(box)
             self.surfaces.append(box)
 
-        box = Surface(game = self, x = 5*games.screen.width/6, y = 4*games.screen.height/7)
-        games.screen.add(box)
-        self.surfaces.append(box)
+        for h in hazards:
+            hazard = Hazard(game = self, x = h[0], y = h[1])
+            games.screen.add(hazard)
 
-        player = Player(game = self,
-                    x = games.screen.width/7,
-                    y = 5*games.screen.height/7 - 80)
+        exit = Exit(game = self, x = e[0], y = e[1])
+        games.screen.add(exit)
+
+        player = Player(game = self, x = p[0], y = p[1])
         games.screen.add(player)
+        self.player = player
 
     def infoBar(self):
         """
@@ -134,15 +141,6 @@ class PortalGame():
     def endPlayerGame(self):
         """
         End the player controlled game
-        The computer will then learn from all the accumulated data
         """
+        self.homescreen()
 
-        games.quit()
-
-    def endCompGame(self):
-        """
-        End the player controlled game
-        """
-        games.music.stop()
-        # Display top score. Add to save file
-        self.levelMenu()

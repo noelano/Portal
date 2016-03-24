@@ -10,14 +10,15 @@ class PortalShot(games.Sprite):
 
     image = games.load_image(r"Images\shot.bmp")
 
-    def __init__(self, game, x, y, dx, dy, colour):
+    def __init__(self, game, x, y, dx, dy, colour, shotype):
         """ Initialize the sprite. """
-        velocityFactor = 1
+        velocityFactor = 0.8
 
         super(PortalShot, self).__init__(image = PortalShot.image, x = x, y = y, dx = velocityFactor * dx, dy = velocityFactor * dy)
         self.game = game
         self.lifetime = 30
         self.colour = colour
+        self.shotype = shotype
 
     def update(self):
         """
@@ -33,19 +34,27 @@ class PortalShot(games.Sprite):
             # Only interact with surface
             if sprite in self.game.surfaces:
                 orientation = 0
-                if self.x > sprite.x:
-                    if self.y > sprite.y and (self.y - sprite.y < self.x - sprite.x):
+
+                if self.shotype == 0:
+                    if abs(self.x - sprite.bottom) < 3:
+                        orientation = 3
+                    else:
                         orientation = 2
-                    elif self.y > sprite.y:
-                        orientation = 3
-                    else:
+                elif self.shotype == 1:
+                    if abs(self.x - sprite.top) < 3:
                         orientation = 0
-                else:
-                    if self.y > sprite.y and (self.y - sprite.y < sprite.x - self.x):
+                    else:
                         orientation = 1
-                    elif self.y > sprite.y:
+                elif self.shotype == 2:
+                    if abs(self.x - sprite.bottom) < 3:
                         orientation = 3
                     else:
+                        orientation = 1
+                else:
+                    if abs(self.x - sprite.top) < 3:
                         orientation = 0
+                    else:
+                        orientation = 2
+
                 sprite.makePortal(self.colour, orientation)
                 self.destroy()

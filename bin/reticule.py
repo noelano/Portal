@@ -9,7 +9,7 @@ class Reticule(games.Sprite):
 
     image = games.load_image(r"Images\reticule.bmp")
     radius = 30
-    rotation_step = 3
+    rotation_step = 2
 
     def __init__(self, game, player, player_x, player_y):
         """ Initialize the sprite. """
@@ -56,14 +56,29 @@ class Reticule(games.Sprite):
                 self.timer = 60
                 dx = self.x - self.baseX
                 dy = self.y - self.baseY
-                orange = PortalShot(self.game, self.baseX, self.baseY, dx, dy, 0)
+                shotype = self.calculateOrientations(dx, dy)
+                orange = PortalShot(self.game, self.baseX, self.baseY, dx, dy, 0, shotype)
                 games.screen.add(orange)
 
             if games.keyboard.is_pressed(games.K_d):
                 self.timer = 60
                 dx = self.x - self.baseX
                 dy = self.y - self.baseY
-                blue = PortalShot(self.game, self.baseX, self.baseY, dx, dy, 1)
+                shotype = self.calculateOrientations(dx, dy)
+                blue = PortalShot(self.game, self.baseX, self.baseY, dx, dy, 1, shotype)
                 games.screen.add(blue)
         elif self.timer > 0:
             self.timer -= 1
+
+    def calculateOrientations(self, dx, dy):
+        # Used to determine possible orientations of portals
+        type = 0
+        if dx > 0:
+            if dy > 0:
+                type = 1
+            else:
+                type = 2
+        elif dy > 0:
+            type = 3
+
+        return type
