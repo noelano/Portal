@@ -2,6 +2,7 @@ from livewires import games, color
 from portalSprite import *
 from reticule import *
 import math
+from utilities import LOC, GRAVITY, TERMINAL_VELOCITY, AIR_RESISTANCE
 
 # Makes no sense having the init here but it works
 # Must be required the first time a game object is initialised, which happens to be in the player???
@@ -9,12 +10,11 @@ import math
 class Player(games.Sprite):
     """ The player controlled character """
 
-    image1 = games.load_image(r"Images\atlas1.bmp")
-    image2 = games.load_image(r"Images\atlas2.bmp")
-    image3 = games.load_image(r"Images\atlas5.bmp")
-    image4 = games.load_image(r"Images\atlas6.bmp")
+    image1 = games.load_image(LOC + r"\..\Images\atlas1.bmp")
+    image2 = games.load_image(LOC + r"\..\Images\atlas2.bmp")
+    image3 = games.load_image(LOC + r"\..\Images\atlas5.bmp")
+    image4 = games.load_image(LOC + r"\..\Images\atlas6.bmp")
     floor = 5 * games.screen.height / 7
-    gravity = 0.02  # So jump looks more natural
 
     def __init__(self, game, x, y):
         """ Initialize the sprite. """
@@ -29,9 +29,11 @@ class Player(games.Sprite):
     def update(self):
         """ Move based on keys pressed. """
         self.counter += 1
+        self.calcSpeed()
 
-        if not self.overlapping_sprites:
-            self.dy += Player.gravity
+        if not self.overlapping_sprites and self.dy < TERMINAL_VELOCITY:
+            self.dy += GRAVITY
+            self.dx *= AIR_RESISTANCE
 
         if games.keyboard.is_pressed(games.K_LEFT):
             if self.dy == 0:
@@ -61,8 +63,6 @@ class Player(games.Sprite):
                 self.image = Player.image3
             elif self.counter % 15 == 0:
                 self.image = Player.image4
-
-        self.calcSpeed()
 
     def checkWin(self):
         """ See if the goal has been reached """

@@ -1,5 +1,5 @@
-from livewires import games, color
-import math
+from livewires import games
+from utilities import LOC
 
 games.init(screen_width = 1100, screen_height = 700, fps = 50)
 
@@ -7,18 +7,18 @@ class PortalShot(games.Sprite):
     """
     Object to create portal
     """
+    Lifetime = 50
 
-    image = games.load_image(r"Images\shot.bmp")
+    image = games.load_image(LOC + r"\..\Images\shot.bmp")
 
-    def __init__(self, game, x, y, dx, dy, colour, shotype):
+    def __init__(self, game, x, y, dx, dy, colour):
         """ Initialize the sprite. """
         velocityFactor = 0.8
 
         super(PortalShot, self).__init__(image = PortalShot.image, x = x, y = y, dx = velocityFactor * dx, dy = velocityFactor * dy)
         self.game = game
-        self.lifetime = 30
+        self.lifetime = PortalShot.Lifetime
         self.colour = colour
-        self.shotype = shotype
 
     def update(self):
         """
@@ -35,26 +35,26 @@ class PortalShot(games.Sprite):
             if sprite in self.game.surfaces:
                 orientation = 0
 
-                if self.shotype == 0:
-                    if abs(self.x - sprite.bottom) < 3:
-                        orientation = 3
-                    else:
+                # Calculate distances to determine where overlap is
+                a = abs(self.bottom - sprite.top)
+                b = abs(self.top - sprite.bottom)
+                c = abs(self.left - sprite.right)
+                d = abs(self.right - sprite.left)
+
+                if a > b:
+                    if c < b:
                         orientation = 2
-                elif self.shotype == 1:
-                    if abs(self.x - sprite.top) < 3:
-                        orientation = 0
-                    else:
+                    elif d < b:
                         orientation = 1
-                elif self.shotype == 2:
-                    if abs(self.x - sprite.bottom) < 3:
+                    else:
                         orientation = 3
-                    else:
-                        orientation = 1
                 else:
-                    if abs(self.x - sprite.top) < 3:
-                        orientation = 0
-                    else:
+                    if c < a:
                         orientation = 2
+                    elif d < a:
+                        orientation = 1
+                    else:
+                        orientation = 0
 
                 sprite.makePortal(self.colour, orientation)
                 self.destroy()

@@ -1,6 +1,13 @@
 # Miscellaneous functions
 import math
 import json
+import os
+
+# Define constants
+LOC = os.getcwd()
+GRAVITY = 0.024
+TERMINAL_VELOCITY = 2
+AIR_RESISTANCE = 0.999
 
 def distance(a, b):
     # Get distance between sprites a and b
@@ -8,6 +15,7 @@ def distance(a, b):
     return dist
 
 def loadLevel(location):
+    # Level details are stored in json files
     with open(location) as data_file:
         data = json.load(data_file)
 

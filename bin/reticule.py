@@ -1,13 +1,14 @@
 from livewires import games, color
 from portalSprite import *
 import math
+from utilities import LOC
 
 class Reticule(games.Sprite):
     """
     Aiming reticule
     """
 
-    image = games.load_image(r"Images\reticule.bmp")
+    image = games.load_image(LOC + r"\..\Images\reticule.bmp")
     radius = 30
     rotation_step = 2
 
@@ -56,29 +57,14 @@ class Reticule(games.Sprite):
                 self.timer = 60
                 dx = self.x - self.baseX
                 dy = self.y - self.baseY
-                shotype = self.calculateOrientations(dx, dy)
-                orange = PortalShot(self.game, self.baseX, self.baseY, dx, dy, 0, shotype)
+                orange = PortalShot(self.game, self.baseX, self.baseY, dx, dy, 0)
                 games.screen.add(orange)
 
             if games.keyboard.is_pressed(games.K_d):
                 self.timer = 60
                 dx = self.x - self.baseX
                 dy = self.y - self.baseY
-                shotype = self.calculateOrientations(dx, dy)
-                blue = PortalShot(self.game, self.baseX, self.baseY, dx, dy, 1, shotype)
+                blue = PortalShot(self.game, self.baseX, self.baseY, dx, dy, 1)
                 games.screen.add(blue)
         elif self.timer > 0:
             self.timer -= 1
-
-    def calculateOrientations(self, dx, dy):
-        # Used to determine possible orientations of portals
-        type = 0
-        if dx > 0:
-            if dy > 0:
-                type = 1
-            else:
-                type = 2
-        elif dy > 0:
-            type = 3
-
-        return type

@@ -4,7 +4,7 @@ from menuPointer import *
 from surfaces import *
 from exit import *
 from hazard import *
-from utilities import loadLevel
+from utilities import loadLevel, LOC
 
 class PortalGame():
     """
@@ -18,8 +18,8 @@ class PortalGame():
         """
         self.fileName = None
         self.images = []
-        for im in ['background']:
-            image = games.load_image("Images\\" + im + ".bmp")
+        for im in ['title', 'background']:
+            image = games.load_image(LOC + "\..\\Images\\" + im + ".bmp")
             self.images.append(image)
 
     def background(self, image):
@@ -40,13 +40,9 @@ class PortalGame():
         self.options = []
         self.background(self.images[0])
 
-        logo = games.Text(value = "Aperture Science", size = 40, color = color.gray,
-                                x = games.screen.width / 2 , y = 200)
-        games.screen.add(logo)
-
         subHeader = "For science!"
         sub = games.Text(value = subHeader, size = 25, color = color.gray,
-                                x = games.screen.width / 2 , y = 500)
+                                x = games.screen.width / 2 , y = 600)
         games.screen.add(sub)
 
         menuOptions = ["Play Game", "Tutorial", "Quit"]
@@ -71,20 +67,16 @@ class PortalGame():
         """
         Play the game
         """
-        self.background(self.images[0])
+        self.background(self.images[1])
 
         # Add info bar to top of screen
         self.infoBar()
 
         # Sprite containers
-        self.portals = []
         self.surfaces = []
         self.neutrinos = []     # React with nothing
 
-        self.orange = None
-        self.blue = None
-
-        surfaces, hazards, p, e = loadLevel(r"Levels\level1.json")
+        surfaces, hazards, p, e = loadLevel(LOC + r"\..\Levels\level1.json")
 
         for s in surfaces:
             box = Surface(game = self, x = s[0], y = s[1])

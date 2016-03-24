@@ -1,10 +1,11 @@
 from livewires import games, color
+from utilities import LOC
 
 class MenuPointer(games.Sprite):
     """
     Pointer for highlighting and making selections on the game menus
     """
-    image = games.load_image(r"Images\pointer.bmp")
+    image = games.load_image(LOC + r"\..\Images\pointer.bmp")
 
     def __init__(self, game, x, y, menu):
         """ Initialize the sprite. """

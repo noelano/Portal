@@ -1,11 +1,11 @@
 from livewires import games, color
-from utilities import distance
+from utilities import distance, LOC
 
 class Exit(games.Sprite):
     """
     Exit location
     """
-    image = games.load_image(r"Images\exit.bmp")
+    image = games.load_image(LOC + r"\..\Images\exit.bmp")
 
     def __init__(self, game, x, y):
         """ Initialize the sprite. """
@@ -19,5 +19,5 @@ class Exit(games.Sprite):
 
         for sprite in self.overlapping_sprites:
             if sprite == self.game.player:
-                if distance(self, sprite) < 10:
+                if distance(self, sprite) < 20:
                     self.game.endPlayerGame()

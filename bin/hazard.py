@@ -1,10 +1,11 @@
-from livewires import games, color
+from livewires import games
+from utilities import LOC
 
 class Hazard(games.Sprite):
     """
     Dangerous obstacle
     """
-    image = games.load_image(r"Images\hazard.bmp")
+    image = games.load_image(LOC + r"\..\Images\hazard.bmp")
 
     def __init__(self, game, x, y):
         """ Initialize the sprite. """
