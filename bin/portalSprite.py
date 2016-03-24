@@ -57,4 +57,5 @@ class PortalShot(games.Sprite):
                         orientation = 0
 
                 sprite.makePortal(self.colour, orientation)
+                self.game.neutrinos.remove(self)
                 self.destroy()

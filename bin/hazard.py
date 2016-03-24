@@ -19,4 +19,4 @@ class Hazard(games.Sprite):
 
         for sprite in self.overlapping_sprites:
             if sprite == self.game.player:
-                self.game.endPlayerGame()
+                self.game.gameOver()

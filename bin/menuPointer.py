@@ -68,8 +68,28 @@ class MenuPointer(games.Sprite):
 
         if self.menu == 0:
             if self.selection == 0:
-                self.game.Level(1, self.game.fileName)
+                self.game.loadGame()
             elif self.selection == 1:
                 self.game.tutorial()
             else:
                 games.screen.quit()
+        elif self.menu == 1:
+            # The selection is a file name.
+            # get the label from the game object and proceed to next menu
+            if self.selection == self.num_options:
+                self.game.homescreen()
+            else:
+                fileName = self.game.options[self.selection].value
+                if fileName == 'NEW GAME':
+                    fileName = self.game.enterName()
+                else:
+                    fileName = "save\\" + fileName + ".dat"
+                    self.game.fileName = fileName
+                    self.game.levelMenu()
+        elif self.menu == 2:
+            # Choose a level
+            if self.selection == self.num_options:
+                self.game.loadGame()
+            else:
+                level = int(self.selection)
+                self.game.Level(level, self.game.fileName)

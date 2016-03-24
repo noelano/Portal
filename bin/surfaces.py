@@ -122,7 +122,7 @@ class Surface(games.Sprite):
             sprite.left = self.right + 1
 
     def handleTop(self, sprite):
-        if self.orientation == 0 and Surface.bluePortal and Surface.orangePortal:
+        if self.orientation == 0 and Surface.bluePortal and Surface.orangePortal and abs(self.x - sprite.x) < 30:
             sprite.x = self.x
             if sprite.dy == 0:
                 sprite.dy += 0.5
