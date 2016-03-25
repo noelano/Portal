@@ -6,6 +6,7 @@ from exit import *
 from hazard import *
 from info import *
 from textBox import *
+from badSurface import *
 from utilities import loadLevel, LOC
 import os, pickle
 
@@ -22,8 +23,8 @@ class PortalGame():
         self.fileName = None
         self.images = []
         self.level = None
-        self.totalLevels = 1
-        for im in ['title', 'background', 'credits']:
+        self.totalLevels = 7
+        for im in ['Title', 'background', 'credits', 'Tutorial']:
             image = games.load_image(LOC + "\..\\Images\\" + im + ".bmp")
             self.images.append(image)
 
@@ -67,6 +68,24 @@ class PortalGame():
         games.screen.add(pointer)
 
         games.screen.mainloop()
+
+    def tutorial(self):
+        """
+        Info screen with explanation of game mechanics
+        """
+        self.options = []
+        self.background(self.images[3])
+
+        label = games.Text(value = "Back", size = 25, color = color.blue,
+                                top = 650 , left = games.screen.width / 2)
+        self.options.append(label)
+        games.screen.add(label)
+
+        pointer = MenuPointer(game = self,
+                    x = games.screen.width/2 - 30,
+                    y = label.y,
+                    menu = 1)
+        games.screen.add(pointer)
 
     def loadGame(self):
         """
@@ -123,8 +142,14 @@ class PortalGame():
             pickle_file.close()
 
         for i in range(maxLevel + 1):
+            if i > 11:
+                x_pos = 2 * games.screen.width / 3 + 15
+            elif i > 5:
+                x_pos = games.screen.width / 2 - 15
+            else:
+                x_pos = games.screen.width / 3 - 15
             label = games.Text(value = 'Test ' + str(i + 1), size = 25, color = color.white,
-                                top = 150 + 40 * i , left = games.screen.width / 3)
+                                top = 150 + 40 * (i % 6) , left = x_pos)
             self.options.append(label)
             games.screen.add(label)
 
@@ -146,6 +171,9 @@ class PortalGame():
         """
         Play the game
         """
+        # Make sure no portals are left hanging around
+        Surface.orangePortal = None
+        Surface.bluePortal = None
 
         # Store the level for progression (Or failure)
         self.level = level
@@ -158,12 +186,17 @@ class PortalGame():
         self.surfaces = []
         self.neutrinos = []     # React with nothing
 
-        surfaces, hazards, p, e, start, end_message = loadLevel(LOC + "\\..\\Levels\\level" + str(level) + ".json")
+        surfaces, bad_surfaces, hazards, p, e, start, end_message = loadLevel(LOC + "\\..\\Levels\\level" + str(level) + ".json")
 
         for s in surfaces:
             box = Surface(game = self, x = s[0], y = s[1])
             games.screen.add(box)
             self.surfaces.append(box)
+
+        for b in bad_surfaces:
+            bad = BadSurface(game = self, x = b[0], y = b[1])
+            games.screen.add(bad)
+            self.surfaces.append(bad)
 
         for h in hazards:
             hazard = Hazard(game = self, x = h[0], y = h[1])
@@ -177,7 +210,7 @@ class PortalGame():
         games.screen.add(player)
         self.player = player
 
-        start_message = Info(message = start, size = 40, colour = color.light_gray, x = 550, y = 300, lifetime = 200)
+        start_message = Info(message = start, size = 30, colour = color.white, x = 550, y = 300, lifetime = 200)
         games.screen.add(start_message)
         self.neutrinos.append(start_message)
 
@@ -209,13 +242,6 @@ class PortalGame():
         self.time = games.Text(value = "Time: 0", size = 25, color = color.white,
                                 top = 40 , left = 600)
         games.screen.add(self.time)
-
-    def tutorial(self):
-        """
-        Info screen with background story and explanation of game mechanics
-        """
-        self.options = []
-        self.background(self.images[0])
 
     def levelComplete(self):
         """

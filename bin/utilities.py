@@ -6,7 +6,7 @@ import os
 # Define constants
 LOC = os.getcwd()
 GRAVITY = 0.024
-TERMINAL_VELOCITY = 2
+TERMINAL_VELOCITY = 2.8
 AIR_RESISTANCE = 0.999
 
 def distance(a, b):
@@ -23,5 +23,6 @@ def loadLevel(location):
     Hazards = zip(data["Hazards_x"], data["Hazards_y"])
     Player = (data["Player_x"], data["Player_y"])
     Exit = (data["Exit_x"], data["Exit_y"])
+    Bad_Surfaces = zip(data["Bad_Surface_x"], data["Bad_Surface_y"])
 
-    return Surfaces, Hazards, Player, Exit, data["Start"], data["End"]
+    return Surfaces, Bad_Surfaces, Hazards, Player, Exit, data["Start"], data["End"]

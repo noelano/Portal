@@ -18,12 +18,16 @@ class Exit(games.Sprite):
         Check if the player has won
         """
 
+        # Check for menu selection
+        if games.keyboard.is_pressed(games.K_m):
+            self.game.levelMenu()
+
         for sprite in self.overlapping_sprites:
             if sprite == self.game.player:
                 if distance(self, sprite) < 20:
                     message = games.Message(value = self.end_message,
-                                    size = 60,
-                                    color = color.blue,
+                                    size = 30,
+                                    color = color.white,
                                     x = games.screen.width/2,
                                     y = games.screen.height/2,
                                     lifetime = 2 * games.screen.fps,

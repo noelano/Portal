@@ -52,10 +52,12 @@ class MenuPointer(games.Sprite):
             self.selection = 0
 
         # Get y location of newly selected option
-        option_location = self.game.options[self.selection].y
+        y_location = self.game.options[self.selection].y
+        x_location = self.game.options[self.selection].left
 
         # Put the pointer at this location
-        self.y = option_location
+        self.y = y_location
+        self.right = x_location - 4
 
         # Change option colours
         self.game.options[old_selection].color = color.white
@@ -69,6 +71,8 @@ class MenuPointer(games.Sprite):
         if self.menu == 0:
             if self.selection == 0:
                 self.game.loadGame()
+                # For quick testing:
+                #self.game.Level(7, self.game.fileName)
             elif self.selection == 1:
                 self.game.tutorial()
             else:

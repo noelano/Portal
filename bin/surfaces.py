@@ -2,9 +2,11 @@ from livewires import games, color
 import random
 from utilities import distance, LOC
 
+games.init(screen_width = 1100, screen_height = 700, fps = 50)
+
 class Surface(games.Sprite):
     """
-    Pointer for highlighting and making selections on the game menus
+    Surface that portals can be shot onto
     """
     image1 = games.load_image(LOC + r"\..\Images\surface1.bmp")
     image2 = games.load_image(LOC + r"\..\Images\surface2.bmp")
@@ -76,8 +78,6 @@ class Surface(games.Sprite):
         """
         Transform into a portal
         """
-        self.orientation = orientation
-        self.colour = colour
 
         if colour == 0:
             if Surface.orangePortal:
@@ -89,6 +89,9 @@ class Surface(games.Sprite):
                 Surface.bluePortal.clearPortal()
             self.image = Surface.blues[orientation]
             Surface.bluePortal = self
+
+        self.orientation = orientation
+        self.colour = colour
 
     def clearPortal(self):
         self.image = Surface.images[self.choice]

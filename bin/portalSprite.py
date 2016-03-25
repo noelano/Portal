@@ -1,7 +1,6 @@
 from livewires import games
 from utilities import LOC
-
-games.init(screen_width = 1100, screen_height = 700, fps = 50)
+from surfaces import *
 
 class PortalShot(games.Sprite):
     """
@@ -32,7 +31,7 @@ class PortalShot(games.Sprite):
 
         for sprite in self.overlapping_sprites:
             # Only interact with surface
-            if sprite in self.game.surfaces:
+            if type(sprite) == Surface:
                 orientation = 0
 
                 # Calculate distances to determine where overlap is
@@ -57,5 +56,4 @@ class PortalShot(games.Sprite):
                         orientation = 0
 
                 sprite.makePortal(self.colour, orientation)
-                self.game.neutrinos.remove(self)
                 self.destroy()
