@@ -72,7 +72,7 @@ class MenuPointer(games.Sprite):
             if self.selection == 0:
                 self.game.loadGame()
                 # For quick testing:
-                #self.game.Level(7, self.game.fileName)
+                #self.game.Level(8, self.game.fileName)
             elif self.selection == 1:
                 self.game.tutorial()
             else:

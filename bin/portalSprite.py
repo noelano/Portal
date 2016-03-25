@@ -12,7 +12,7 @@ class PortalShot(games.Sprite):
 
     def __init__(self, game, x, y, dx, dy, colour):
         """ Initialize the sprite. """
-        velocityFactor = 0.8
+        velocityFactor = 0.7
 
         super(PortalShot, self).__init__(image = PortalShot.image, x = x, y = y, dx = velocityFactor * dx, dy = velocityFactor * dy)
         self.game = game
@@ -35,10 +35,15 @@ class PortalShot(games.Sprite):
                 orientation = 0
 
                 # Calculate distances to determine where overlap is
-                a = abs(self.bottom - sprite.top)
-                b = abs(self.top - sprite.bottom)
-                c = abs(self.left - sprite.right)
-                d = abs(self.right - sprite.left)
+                #a = abs(self.bottom - sprite.top)
+                #b = abs(self.top - sprite.bottom)
+                #c = abs(self.left - sprite.right)
+                #d = abs(self.right - sprite.left)
+
+                a = abs(self.y - sprite.top)
+                b = abs(self.y - sprite.bottom)
+                c = abs(self.x - sprite.right)
+                d = abs(self.x - sprite.left)
 
                 if a > b:
                     if c < b:

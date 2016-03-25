@@ -23,7 +23,7 @@ class PortalGame():
         self.fileName = None
         self.images = []
         self.level = None
-        self.totalLevels = 7
+        self.totalLevels = 8
         for im in ['Title', 'background', 'credits', 'Tutorial']:
             image = games.load_image(LOC + "\..\\Images\\" + im + ".bmp")
             self.images.append(image)
@@ -273,5 +273,5 @@ class PortalGame():
 
     def credits(self):
         self.background(self.images[2])
-        message = Info("Game Over.", size = 40, colour = color.yellow, x = 550, y = -100, lifetime = 20000, dx = 0, dy = 0.3)
+        message = Info("Thank you for participating.", size = 40, colour = color.yellow, x = 550, y = -100, lifetime = 20000, dx = 0, dy = 0.3)
         games.screen.add(message)
