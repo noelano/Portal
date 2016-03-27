@@ -21,7 +21,7 @@ class Player(games.Sprite):
         super(Player, self).__init__(image = Player.image1, x = x, y = y, dx = 0, dy = 0)
         self.game = game
         self.counter = 0    # To control the refresh of the sprite image
-        self.reticule = Reticule(self.game, self, self.x, self.y)
+        self.reticule = Reticule(self.game, self.x, self.y)
         games.screen.add(self.reticule)
         self.game.neutrinos.append(self.reticule)
         self.speed = 0
@@ -31,7 +31,7 @@ class Player(games.Sprite):
         self.counter += 1
         self.calcSpeed()
 
-        if not self.overlapping_sprites and self.dy < TERMINAL_VELOCITY:
+        if (not self.overlapping_sprites or self.overlapping_sprites == [self.reticule]) and self.dy < TERMINAL_VELOCITY:
             self.dy += GRAVITY
             self.dx *= AIR_RESISTANCE
 
@@ -63,6 +63,22 @@ class Player(games.Sprite):
                 self.image = Player.image3
             elif self.counter % 15 == 0:
                 self.image = Player.image4
+
+        # This section controls the reticule actions, including firing, aiming and shooting
+        # Shoot portals:
+        if games.keyboard.is_pressed(games.K_a):
+            self.reticule.fireOrange()
+        if games.keyboard.is_pressed(games.K_d):
+            self.reticule.fireBlue()
+
+        # Change aim
+        if games.keyboard.is_pressed(games.K_UP) and not games.keyboard.is_pressed(games.K_SPACE):
+            self.reticule.moveUp()
+        if games.keyboard.is_pressed(games.K_DOWN) and not games.keyboard.is_pressed(games.K_SPACE):
+            self.reticule.moveDown()
+
+        # Track player position
+        self.reticule.movePosition(self.x, self.y)
 
     def checkWin(self):
         """ See if the goal has been reached """

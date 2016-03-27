@@ -5,6 +5,8 @@ import os
 
 # Define constants
 LOC = os.getcwd()
+if 'bin' not in LOC:
+    LOC += '\\bin'
 GRAVITY = 0.024
 TERMINAL_VELOCITY = 2.8
 AIR_RESISTANCE = 0.999

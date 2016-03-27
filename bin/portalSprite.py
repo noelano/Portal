@@ -32,33 +32,85 @@ class PortalShot(games.Sprite):
         for sprite in self.overlapping_sprites:
             # Only interact with surface
             if type(sprite) == Surface:
-                orientation = 0
+                orientation = None
 
-                # Calculate distances to determine where overlap is
-                #a = abs(self.bottom - sprite.top)
-                #b = abs(self.top - sprite.bottom)
-                #c = abs(self.left - sprite.right)
-                #d = abs(self.right - sprite.left)
+                # Based on the direction the missile is travelling, determine what possible face is hit
 
-                a = abs(self.y - sprite.top)
-                b = abs(self.y - sprite.bottom)
-                c = abs(self.x - sprite.right)
-                d = abs(self.x - sprite.left)
-
-                if a > b:
-                    if c < b:
-                        orientation = 2
-                    elif d < b:
+                if self.dx > 0 and self.dy > 0:
+                    if 0 in sprite.exposedFaces and 1 in sprite.exposedFaces:
+                        # calculate closest
+                        a = abs(self.y - sprite.top)
+                        b = abs(self.x - sprite.left)
+                        if a < b:
+                            orientation = 0
+                        else:
+                            orientation = 1
+                    elif 0 in sprite.exposedFaces:
+                        orientation = 0
+                    elif 1 in sprite.exposedFaces:
                         orientation = 1
-                    else:
+
+                elif self.dx > 0 and self.dy < 0:
+                    if 1 in sprite.exposedFaces and 3 in sprite.exposedFaces:
+                        # calculate closest
+                        a = abs(self.y - sprite.bottom)
+                        b = abs(self.x - sprite.left)
+                        if a < b:
+                            orientation = 3
+                        else:
+                            orientation = 1
+                    elif 1 in sprite.exposedFaces:
+                        orientation = 1
+                    elif 3 in sprite.exposedFaces:
                         orientation = 3
-                else:
-                    if c < a:
+
+                elif self.dx < 0 and self.dy > 0:
+                    if 0 in sprite.exposedFaces and 2 in sprite.exposedFaces:
+                        # calculate closest
+                        a = abs(self.y - sprite.top)
+                        b = abs(self.x - sprite.right)
+                        if a < b:
+                            orientation = 0
+                        else:
+                            orientation = 2
+                    elif 0 in sprite.exposedFaces:
+                        orientation = 0
+                    elif 2 in sprite.exposedFaces:
                         orientation = 2
-                    elif d < a:
+
+                elif self.dx < 0 and self.dy < 0:
+                    if 2 in sprite.exposedFaces and 3 in sprite.exposedFaces:
+                        # calculate closest
+                        a = abs(self.y - sprite.bottom)
+                        b = abs(self.x - sprite.right)
+                        if a < b:
+                            orientation = 3
+                        else:
+                            orientation = 2
+                    elif 2 in sprite.exposedFaces:
+                        orientation = 2
+                    elif 3 in sprite.exposedFaces:
+                        orientation = 3
+
+                elif self.dx > 0:
+                    if 1 in sprite.exposedFaces:
                         orientation = 1
-                    else:
+
+                elif self.dx < 0:
+                    if 2 in sprite.exposedFaces:
+                        orientation = 2
+
+                elif self.dy > 0:
+                    if 0 in sprite.exposedFaces:
                         orientation = 0
 
-                sprite.makePortal(self.colour, orientation)
+                elif self.dy < 0:
+                    if 3 in sprite.exposedFaces:
+                        orientation = 3
+
+                if orientation != None:
+                    sprite.makePortal(self.colour, orientation)
+                self.destroy()
+
+            elif sprite in self.game.surfaces:
                 self.destroy()

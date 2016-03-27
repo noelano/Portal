@@ -179,9 +179,6 @@ class PortalGame():
         self.level = level
         self.background(self.images[1])
 
-        # Add info bar to top of screen
-        self.infoBar()
-
         # Sprite containers
         self.surfaces = []
         self.neutrinos = []     # React with nothing
@@ -202,6 +199,12 @@ class PortalGame():
             hazard = Hazard(game = self, x = h[0], y = h[1])
             games.screen.add(hazard)
 
+        # Determine which faces are exposed on each surface
+        # Portals can only be placed on these sides
+        for sprite in self.surfaces:
+            if type(sprite) == Surface:
+                sprite.calculateExposedFaces()
+
         exit = Exit(game = self, end_message = end_message, x = e[0], y = e[1])
         games.screen.add(exit)
         self.neutrinos.append(exit)
@@ -213,35 +216,6 @@ class PortalGame():
         start_message = Info(message = start, size = 30, colour = color.white, x = 550, y = 300, lifetime = 200)
         games.screen.add(start_message)
         self.neutrinos.append(start_message)
-
-    def infoBar(self):
-        """
-        Display controls and game info across top of screen
-        """
-        message1 = "Move Left / Right: Arrow keys"
-        label1 = games.Text(value = message1, size = 25, color = color.white,
-                                top = 10 , left = 10)
-        games.screen.add(label1)
-
-        label2 = games.Text(value = "Jump: Spacebar", size = 25, color = color.white,
-                                top = 40 , left = 10)
-        games.screen.add(label2)
-
-        label3 = games.Text(value = "Exit: Esc", size = 25, color = color.white,
-                                top = 10 , left = 350)
-        games.screen.add(label3)
-
-        label4 = games.Text(value = "Return to menu: m", size = 25, color = color.white,
-                                top = 40 , left = 350)
-        games.screen.add(label4)
-
-        self.score = games.Text(value = "Score: 0", size = 25, color = color.white,
-                                top = 10 , left = 600)
-        games.screen.add(self.score)
-
-        self.time = games.Text(value = "Time: 0", size = 25, color = color.white,
-                                top = 40 , left = 600)
-        games.screen.add(self.time)
 
     def levelComplete(self):
         """
@@ -273,5 +247,12 @@ class PortalGame():
 
     def credits(self):
         self.background(self.images[2])
-        message = Info("Thank you for participating.", size = 40, colour = color.yellow, x = 550, y = -100, lifetime = 20000, dx = 0, dy = 0.3)
+        message = Info("Thank you for participating.",
+                       size = 40,
+                       colour = color.yellow,
+                       x = 550,
+                       y = -100,
+                       lifetime = 20000,
+                       dx = 0,
+                       dy = 0.3)
         games.screen.add(message)

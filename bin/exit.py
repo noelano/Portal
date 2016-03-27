@@ -12,15 +12,22 @@ class Exit(games.Sprite):
         super(Exit, self).__init__(image = Exit.image, x = x, y = y, dx = 0, dy = 0)
         self.game = game
         self.end_message = end_message
+        self.counter = 0
+        self.time = 0
 
     def update(self):
         """
         Check if the player has won
         """
+        self.counter += 1
 
         # Check for menu selection
         if games.keyboard.is_pressed(games.K_m):
             self.game.levelMenu()
+
+        if self.counter % 25 == 0:
+            # Update score and timer each half second
+            self.time = int(self.counter / 50)
 
         for sprite in self.overlapping_sprites:
             if sprite == self.game.player:

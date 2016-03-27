@@ -1,4 +1,4 @@
-from livewires import games, color
+from livewires import games
 import random
 from utilities import distance, LOC
 
@@ -33,6 +33,7 @@ class Surface(games.Sprite):
         self.game = game
         self.orientation = -1
         self.colour = -1
+        self.exposedFaces = [0,1,2,3]
 
     def update(self):
         """
@@ -156,7 +157,7 @@ class Surface(games.Sprite):
             sprite.x = Surface.bluePortal.x
             sprite.y = Surface.bluePortal.y - 11
             # To prevent player constantly falling into two holes
-            if self.orientation != 0:
+            if self.orientation != 0 or sprite.speed > 0.7:
                 sprite.dx = 0
                 sprite.dy = -sprite.speed
             else:
@@ -206,3 +207,31 @@ class Surface(games.Sprite):
             sprite.y = Surface.orangePortal.y + 11
             sprite.dx = 0
             sprite.dy = sprite.speed
+
+    def calculateExposedFaces(self):
+        """
+        Determine which faces are exposed. Portals can only be placed on these faces
+        This is done by checking the overlapping sprites to see which sides have an overlap
+        (And are therefore not exposed)
+        """
+
+        for sprite in self.overlapping_sprites:
+            a = abs(self.bottom - sprite.top)
+            b = abs(self.top - sprite.bottom)
+            c = abs(self.left - sprite.right)
+            d = abs(self.right - sprite.left)
+            e = abs(self.left - sprite.left)
+            f = abs(self.bottom - sprite.bottom)
+
+            if b < a and (e < 55):
+                if 0 in self.exposedFaces:
+                    self.exposedFaces.remove(0)
+            if a < b and (e < 55):
+                if 3 in self.exposedFaces:
+                    self.exposedFaces.remove(3)
+            if c < d and (f < 55):
+                if 1 in self.exposedFaces:
+                    self.exposedFaces.remove(1)
+            if d < c and (f < 55):
+                if 2 in self.exposedFaces:
+                    self.exposedFaces.remove(2)
