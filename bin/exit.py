@@ -29,6 +29,7 @@ class Exit(games.Sprite):
             # Update score and timer each half second
             self.time = int(self.counter / 50)
 
+        # Check if the player has reached the exit
         for sprite in self.overlapping_sprites:
             if sprite == self.game.player:
                 if distance(self, sprite) < 20:

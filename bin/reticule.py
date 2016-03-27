@@ -1,4 +1,4 @@
-from livewires import games, color
+from livewires import games
 from portalSprite import *
 import math
 from utilities import LOC

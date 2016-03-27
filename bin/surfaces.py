@@ -43,7 +43,6 @@ class Surface(games.Sprite):
         for sprite in self.overlapping_sprites:
             # Don't want to make changes to any other surfaces
             if (sprite not in self.game.surfaces and sprite not in self.game.neutrinos):
-                #print(Surface.orangePortal, Surface.bluePortal, self, self.colour, self.orientation)
 
                 # Calculate distances to determine where overlap is
                 a = abs(self.bottom - sprite.top)
@@ -190,7 +189,7 @@ class Surface(games.Sprite):
             sprite.x = Surface.orangePortal.x
             sprite.y = Surface.orangePortal.y - 11
             # To prevent player constantly falling into two holes
-            if self.orientation != 0:
+            if self.orientation != 0 or sprite.speed > 0.7:
                 sprite.dx = 0
                 sprite.dy = -sprite.speed
             else:

@@ -14,7 +14,7 @@ class Hazard(games.Sprite):
 
     def update(self):
         """
-        Check if the player has won
+        Check for objects falling into te hazard
         """
 
         for sprite in self.overlapping_sprites:
