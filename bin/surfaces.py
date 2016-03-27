@@ -80,6 +80,10 @@ class Surface(games.Sprite):
         Transform into a portal
         """
 
+        # First check if we're already set as a portal
+        if self.colour != -1:
+            self.clearPortal()
+
         if colour == 0:
             if Surface.orangePortal:
                 Surface.orangePortal.clearPortal()
