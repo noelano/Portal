@@ -14,7 +14,6 @@ class Player(games.Sprite):
     image2 = games.load_image(LOC + r"\..\Images\atlas2.bmp")
     image3 = games.load_image(LOC + r"\..\Images\atlas5.bmp")
     image4 = games.load_image(LOC + r"\..\Images\atlas6.bmp")
-    floor = 5 * games.screen.height / 7
 
     def __init__(self, game, x, y):
         """ Initialize the sprite. """
@@ -95,3 +94,7 @@ class Player(games.Sprite):
 
     def calcSpeed(self):
         self.speed = math.sqrt(self.dx**2 + self.dy**2)
+
+    def die(self):
+        self.destroy()
+        self.game.gameOver()

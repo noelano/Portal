@@ -7,6 +7,7 @@ from hazard import *
 from info import *
 from textBox import *
 from badSurface import *
+from sentry import *
 from utilities import loadLevel, LOC
 import os, pickle
 
@@ -23,7 +24,7 @@ class PortalGame():
         self.fileName = None
         self.images = []
         self.level = None
-        self.totalLevels = 10
+        self.totalLevels = 11
         for im in ['Title', 'background', 'credits', 'Tutorial']:
             image = games.load_image(LOC + "\..\\Images\\" + im + ".bmp")
             self.images.append(image)
@@ -183,21 +184,25 @@ class PortalGame():
         self.surfaces = []
         self.neutrinos = []     # React with nothing
 
-        surfaces, bad_surfaces, hazards, p, e, start, end_message = loadLevel(LOC + "\\..\\Levels\\level" + str(level) + ".json")
+        layout = loadLevel(LOC + "\\..\\Levels\\level" + str(level) + ".json")
 
-        for s in surfaces:
+        for s in layout[0]:
             box = Surface(game = self, x = s[0], y = s[1])
             games.screen.add(box)
             self.surfaces.append(box)
 
-        for b in bad_surfaces:
+        for b in layout[1]:
             bad = BadSurface(game = self, x = b[0], y = b[1])
             games.screen.add(bad)
             self.surfaces.append(bad)
 
-        for h in hazards:
+        for h in layout[2]:
             hazard = Hazard(game = self, x = h[0], y = h[1])
             games.screen.add(hazard)
+
+        for e in layout[3]:
+            enemy = Sentry(game = self, x = e[0], y = e[1])
+            games.screen.add(enemy)
 
         # Determine which faces are exposed on each surface
         # Portals can only be placed on these sides
@@ -205,15 +210,15 @@ class PortalGame():
             if type(sprite) == Surface:
                 sprite.calculateExposedFaces()
 
-        exit = Exit(game = self, end_message = end_message, x = e[0], y = e[1])
+        exit = Exit(game = self, end_message = layout[7], x = layout[5][0], y = layout[5][1])
         games.screen.add(exit)
         self.neutrinos.append(exit)
 
-        player = Player(game = self, x = p[0], y = p[1])
+        player = Player(game = self, x = layout[4][0], y = layout[4][1])
         games.screen.add(player)
         self.player = player
 
-        start_message = Info(message = start, size = 30, colour = color.white, x = 550, y = 300, lifetime = 200)
+        start_message = Info(message = layout[6], size = 30, colour = color.white, x = 550, y = 300, lifetime = 200)
         games.screen.add(start_message)
         self.neutrinos.append(start_message)
 

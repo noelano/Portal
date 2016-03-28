@@ -5,6 +5,8 @@
 	"Hazards_y":[],
 	"Bad_Surface_x":[],
 	"Bad_Surface_y":[],
+	"Enemies_x":[],
+	"Enemies_y":[],
 	"Player_x":69,
 	"Player_y":591,
 	"Exit_x":1066,

@@ -26,5 +26,6 @@ def loadLevel(location):
     Player = (data["Player_x"], data["Player_y"])
     Exit = (data["Exit_x"], data["Exit_y"])
     Bad_Surfaces = zip(data["Bad_Surface_x"], data["Bad_Surface_y"])
+    Enemies = zip(data["Enemies_x"], data["Enemies_y"])
 
-    return Surfaces, Bad_Surfaces, Hazards, Player, Exit, data["Start"], data["End"]
+    return Surfaces, Bad_Surfaces, Hazards, Enemies, Player, Exit, data["Start"], data["End"]

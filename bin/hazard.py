@@ -14,9 +14,9 @@ class Hazard(games.Sprite):
 
     def update(self):
         """
-        Check for objects falling into te hazard
+        Check for objects falling into the hazard
         """
 
         for sprite in self.overlapping_sprites:
-            if sprite == self.game.player:
-                self.game.gameOver()
+            if sprite not in self.game.surfaces and sprite not in self.game.neutrinos:
+                sprite.die()
