@@ -18,5 +18,5 @@ class Hazard(games.Sprite):
         """
 
         for sprite in self.overlapping_sprites:
-            if sprite not in self.game.surfaces and sprite not in self.game.neutrinos:
+            if sprite not in self.game.surfaces and sprite not in self.game.neutrinos and type(sprite) != Hazard:
                 sprite.die()
