@@ -50,10 +50,10 @@ class Surface(games.Sprite):
                 c = abs(self.left - sprite.right)
                 d = abs(self.right - sprite.left)
 
-                if self.orientation == 0:
+                if self.orientation == 0 and sprite.dy > 0:
                     self.handleTop(sprite)
 
-                elif sprite.dy > 0:
+                elif sprite.dy >= 0:
                     if c < min(a, b):
                         self.handleLeft(sprite)
                     elif d < min(a, b):
@@ -160,7 +160,7 @@ class Surface(games.Sprite):
             sprite.x = Surface.bluePortal.x
             sprite.y = Surface.bluePortal.y - 11
             # To prevent player constantly falling into two holes
-            if self.orientation != 0 or sprite.speed > 0.7:
+            if self.orientation != 0 or sprite.speed > 0.8:
                 sprite.dx = 0
                 sprite.dy = -sprite.speed
             else:

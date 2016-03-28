@@ -14,6 +14,7 @@ class Exit(games.Sprite):
         self.end_message = end_message
         self.counter = 0
         self.time = 0
+        self.message = None
 
     def update(self):
         """
@@ -32,7 +33,7 @@ class Exit(games.Sprite):
         # Check if the player has reached the exit
         for sprite in self.overlapping_sprites:
             if sprite == self.game.player:
-                if distance(self, sprite) < 20:
+                if distance(self, sprite) < 20 and not self.message:
                     message = games.Message(value = self.end_message,
                                     size = 30,
                                     color = color.white,
@@ -40,4 +41,5 @@ class Exit(games.Sprite):
                                     y = games.screen.height/2,
                                     lifetime = 2 * games.screen.fps,
                                     after_death = self.game.levelComplete)
+                    self.message = message
                     games.screen.add(message)

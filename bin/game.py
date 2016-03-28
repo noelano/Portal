@@ -23,7 +23,7 @@ class PortalGame():
         self.fileName = None
         self.images = []
         self.level = None
-        self.totalLevels = 9
+        self.totalLevels = 10
         for im in ['Title', 'background', 'credits', 'Tutorial']:
             image = games.load_image(LOC + "\..\\Images\\" + im + ".bmp")
             self.images.append(image)
