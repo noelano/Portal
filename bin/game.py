@@ -200,6 +200,10 @@ class PortalGame():
             hazard = Hazard(game = self, x = h[0], y = h[1])
             games.screen.add(hazard)
 
+        exit = Exit(game = self, end_message = layout[7], x = layout[5][0], y = layout[5][1])
+        games.screen.add(exit)
+        self.neutrinos.append(exit)
+
         for e in layout[3]:
             enemy = Sentry(game = self, x = e[0], y = e[1])
             games.screen.add(enemy)
@@ -209,10 +213,6 @@ class PortalGame():
         for sprite in self.surfaces:
             if type(sprite) == Surface:
                 sprite.calculateExposedFaces()
-
-        exit = Exit(game = self, end_message = layout[7], x = layout[5][0], y = layout[5][1])
-        games.screen.add(exit)
-        self.neutrinos.append(exit)
 
         player = Player(game = self, x = layout[4][0], y = layout[4][1])
         games.screen.add(player)

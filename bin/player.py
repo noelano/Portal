@@ -1,6 +1,7 @@
 from livewires import games, color
 from portalSprite import *
 from reticule import *
+from explosion import *
 import math
 from utilities import LOC, GRAVITY, TERMINAL_VELOCITY, AIR_RESISTANCE
 
@@ -96,5 +97,8 @@ class Player(games.Sprite):
         self.speed = math.sqrt(self.dx**2 + self.dy**2)
 
     def die(self):
+        new_explosion = Explosion(x = self.x, y = self.y)
+        games.screen.add(new_explosion)
         self.destroy()
-        self.game.gameOver()
+        self.reticule.destroy()
+        #self.game.gameOver()

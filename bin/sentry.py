@@ -1,6 +1,7 @@
 from livewires import games
 from sentryLOS import *
 from laser import *
+from explosion import *
 import math, random
 from utilities import LOC, GRAVITY, TERMINAL_VELOCITY, AIR_RESISTANCE
 
@@ -86,6 +87,8 @@ class Sentry(games.Sprite):
         self.speed = math.sqrt(self.dx**2 + self.dy**2)
 
     def die(self):
+        new_explosion = Explosion(x = self.x, y = self.y)
+        games.screen.add(new_explosion)
         self.destroy()
 
     def look(self):
