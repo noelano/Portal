@@ -14,27 +14,31 @@ class MenuPointer(games.Sprite):
         self.selection = 0
         self.num_options = len(self.game.options) - 1
         self.menu = menu
-        self.counter = 1
+        self.counter = 15
 
     def update(self):
         """
         Move the pointer up and down through the options list
         If the user hits enter proceed with the selected option
         """
-        self.counter += 1
+        if self.counter > 0:
+            self.counter -= 1
 
         # Because we have 50 fps a single button press could lead to a number
         # of updates ie one press of 'up' could scroll up 6 times.
         # To prevent this we add a buffer of 10 frames, which is what the counter
         # variable is used for
 
-        if self.counter % 13 == 0:
+        if self.counter == 0:
             if self.num_options > 0:
                 if games.keyboard.is_pressed(games.K_UP):
+                    self.counter = 15
                     self.move(-1)
                 if games.keyboard.is_pressed(games.K_DOWN):
+                    self.counter = 15
                     self.move(1)
             if games.keyboard.is_pressed(games.K_RETURN):
+                self.counter = 15
                 self.enter()
 
     def move(self, dir):
@@ -72,7 +76,7 @@ class MenuPointer(games.Sprite):
             if self.selection == 0:
                 self.game.loadGame()
                 # For quick testing:
-                #self.game.Level(12, self.game.fileName)
+                #self.game.Level(11, self.game.fileName)
             elif self.selection == 1:
                 self.game.tutorial()
             else:

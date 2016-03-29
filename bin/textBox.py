@@ -17,7 +17,7 @@ class TextBox(games.Sprite):
         super(TextBox, self).__init__(image = TextBox.image, x = x, y = y, dx = 0, dy = 0)
         self.game = game
         self.text = ''
-        self.counter = 0
+        self.counter = 15
         self.DisplayText = games.Text(value = '', size = 25, color = color.white,
                                 top = self.y + 5, left = self.x - 20)
         games.screen.add(self.DisplayText)
@@ -26,19 +26,22 @@ class TextBox(games.Sprite):
         """
         Accept text input from user and render on screen
         """
-        self.counter += 1
+        if self.counter > 0:
+            self.counter -= 1
 
-        if self.counter % 13 == 0:
+        if self.counter == 0:
             if games.keyboard.is_pressed(games.K_RETURN) and self.text != '':
                 self.game.fileName = "save\\" + self.text + ".dat"
                 self.game.levelMenu()
             if games.keyboard.is_pressed(games.K_BACKSPACE):
+                self.counter = 15
                 self.text = self.text[:-1]
 
             for char in TextBox.validChars:
                 label = 'K_' + char
                 # Check the attribute of the games object which matches label
                 if games.keyboard.is_pressed(getattr(games, label)) and len(self.text) < 15:
+                    self.counter = 15
                     self.text = self.text + char
 
         self.DisplayText.value = self.text.upper()
