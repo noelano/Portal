@@ -12,5 +12,7 @@
 	"Start":"Let's see you get up here!",
 	"End":"Damn, I was sure you couldn't reach",
 	"Bad_Surface_x":[],
-	"Bad_Surface_y":[]
+	"Bad_Surface_y":[],
+	"Switch_x":0,
+	"Switch_y":0
 }

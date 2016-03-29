@@ -12,5 +12,7 @@
 	"Exit_x":1066,
 	"Exit_y":572,
 	"Start":"Apologies, the decorators are late.",
-	"End":"Congratulations on making it without portals."
+	"End":"Congratulations on making it without portals.",
+	"Switch_x":0,
+	"Switch_y":0
 }

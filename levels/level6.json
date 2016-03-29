@@ -12,5 +12,7 @@
 	"Exit_x":1066,
 	"Exit_y":572,
 	"Start":"Are you good at the longjump?",
-	"End":"Almost enough for a bronze"
+	"End":"Almost enough for a bronze",
+	"Switch_x":0,
+	"Switch_y":0
 }

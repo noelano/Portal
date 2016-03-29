@@ -5,10 +5,14 @@
 	"Hazards_y":[691],
 	"Bad_Surface_x":[],
 	"Bad_Surface_y":[],
+	"Enemies_x":[],
+	"Enemies_y":[],
 	"Player_x":69,
 	"Player_y":591,
 	"Exit_x":1066,
 	"Exit_y":572,
 	"Start":"Ooops, my bad. Spilled some toxic waste there. Mind your step.",
-	"End":"Yay! No chemical burns!"
+	"End":"Yay! No chemical burns!",
+	"Switch_x":0,
+	"Switch_y":0
 }

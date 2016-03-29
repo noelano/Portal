@@ -12,5 +12,7 @@
 	"Exit_x":1066,
 	"Exit_y":572,
 	"Start":"No mario design was ripped off here",
-	"End":"Admittedly, portal has been extensively ripped off..."
+	"End":"Admittedly, portal has been extensively ripped off...",
+	"Switch_x":0,
+	"Switch_y":0
 }

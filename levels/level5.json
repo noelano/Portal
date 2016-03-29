@@ -12,5 +12,7 @@
 	"Exit_x":118,
 	"Exit_y":415,
 	"Start":"Like a rat in a maze",
-	"End":"Oh. Sorry, am I supposed to give you cheese now?"
+	"End":"Oh. Sorry, am I supposed to give you cheese now?",
+	"Switch_x":0,
+	"Switch_y":0
 }

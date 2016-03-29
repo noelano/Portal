@@ -31,7 +31,8 @@ class Player(games.Sprite):
         self.counter += 1
         self.calcSpeed()
 
-        if (not self.overlapping_sprites or self.overlapping_sprites == [self.reticule]) and self.dy < TERMINAL_VELOCITY:
+        if (not self.overlapping_sprites or set(self.overlapping_sprites).issubset(self.game.neutrinos)) \
+                and self.dy < TERMINAL_VELOCITY:
             self.dy += GRAVITY
             self.dx *= AIR_RESISTANCE
 

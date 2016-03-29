@@ -12,5 +12,7 @@
 	"Exit_x":513,
 	"Exit_y":415,
 	"Start":"Fly my pretty!",
-	"End":"That was just a lucky fall"
+	"End":"That was just a lucky fall",
+	"Switch_x":0,
+	"Switch_y":0
 }

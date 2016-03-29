@@ -15,7 +15,7 @@ class Sentry(games.Sprite):
 
     def __init__(self, game, x, y):
         """ Initialize the sprite. """
-        super(Sentry, self).__init__(image = Sentry.image1, x = x, y = y, dx = 0, dy = 0)
+        super(Sentry, self).__init__(image=Sentry.image1, x=x, y=y, dx=0, dy=0)
         self.game = game
         self.counter = 0    # To control the refresh of the sprite image
         self.speed = 0
@@ -87,7 +87,7 @@ class Sentry(games.Sprite):
         self.speed = math.sqrt(self.dx**2 + self.dy**2)
 
     def die(self):
-        new_explosion = Explosion(x = self.x, y = self.y)
+        new_explosion = Explosion(x=self.x, y=self.y)
         games.screen.add(new_explosion)
         self.destroy()
 

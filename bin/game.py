@@ -116,10 +116,10 @@ class PortalGame():
         self.options.append(label)
         games.screen.add(label)
 
-        pointer = MenuPointer(game = self,
-                    x = games.screen.width/3 - 30,
-                    y = self.options[0].y,
-                    menu = 1)
+        pointer = MenuPointer(game=self,
+                    x=games.screen.width/3 - 30,
+                    y=self.options[0].y,
+                    menu=1)
         games.screen.add(pointer)
 
     def levelMenu(self):
@@ -149,20 +149,20 @@ class PortalGame():
                 x_pos = games.screen.width / 2 - 15
             else:
                 x_pos = games.screen.width / 3 - 15
-            label = games.Text(value = 'Test ' + str(i + 1), size = 25, color = color.white,
-                                top = 150 + 40 * (i % 6) , left = x_pos)
+            label = games.Text(value='Test ' + str(i + 1), size=25, color=color.white,
+                                top=150 + 40 * (i % 6), left=x_pos)
             self.options.append(label)
             games.screen.add(label)
 
-        label = games.Text(value = "Back", size = 25, color = color.white,
-                                top = 400 , left = games.screen.width / 3)
+        label = games.Text(value="Back", size=25, color=color.white,
+                                top=400, left=games.screen.width / 3)
         self.options.append(label)
         games.screen.add(label)
 
-        pointer = MenuPointer(game = self,
-                    x = games.screen.width/3 - 30,
-                    y = self.options[0].y,
-                    menu = 2)
+        pointer = MenuPointer(game=self,
+                    x=games.screen.width/3 - 30,
+                    y=self.options[0].y,
+                    menu=2)
         games.screen.add(pointer)
 
         # Set first option to blue
@@ -187,25 +187,34 @@ class PortalGame():
         layout = loadLevel(LOC + "\\..\\Levels\\level" + str(level) + ".json")
 
         for s in layout[0]:
-            box = Surface(game = self, x = s[0], y = s[1])
+            box = Surface(game=self, x=s[0], y=s[1])
             games.screen.add(box)
             self.surfaces.append(box)
 
         for b in layout[1]:
-            bad = BadSurface(game = self, x = b[0], y = b[1])
+            bad = BadSurface(game=self, x=b[0], y=b[1])
             games.screen.add(bad)
             self.surfaces.append(bad)
 
         for h in layout[2]:
-            hazard = Hazard(game = self, x = h[0], y = h[1])
+            hazard = Hazard(game=self, x=h[0], y=h[1])
             games.screen.add(hazard)
 
-        exit = Exit(game = self, end_message = layout[7], x = layout[5][0], y = layout[5][1])
+        if layout[6][0]:
+            exit = Exit(game=self,
+                        end_message=layout[8],
+                        x=layout[5][0],
+                        y=layout[5][1],
+                        has_button=1,
+                        button_x=layout[6][0],
+                        button_y=layout[6][1])
+        else:
+            exit = Exit(game=self, end_message=layout[8], x=layout[5][0], y=layout[5][1])
         games.screen.add(exit)
         self.neutrinos.append(exit)
 
         for e in layout[3]:
-            enemy = Sentry(game = self, x = e[0], y = e[1])
+            enemy = Sentry(game=self, x=e[0], y=e[1])
             games.screen.add(enemy)
 
         # Determine which faces are exposed on each surface
@@ -214,11 +223,11 @@ class PortalGame():
             if type(sprite) == Surface:
                 sprite.calculateExposedFaces()
 
-        player = Player(game = self, x = layout[4][0], y = layout[4][1])
+        player = Player(game=self, x=layout[4][0], y=layout[4][1])
         games.screen.add(player)
         self.player = player
 
-        start_message = Info(message = layout[6], size = 30, colour = color.white, x = 550, y = 300, lifetime = 200)
+        start_message = Info(message=layout[7], size=30, colour=color.white, x=550, y=300, lifetime=200)
         games.screen.add(start_message)
         self.neutrinos.append(start_message)
 

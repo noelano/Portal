@@ -12,5 +12,7 @@
 	"Exit_x":1066,
 	"Exit_y":572,
 	"Start":"Welcome. Please begin testing",
-	"End":"Good. You have the intelligence of an amoeba"
+	"End":"Good. You have the intelligence of an amoeba",
+	"Switch_x":0,
+	"Switch_y":0
 }
