@@ -2,6 +2,7 @@ from livewires import games, color
 from utilities import distance, LOC
 from switch import *
 
+
 class Exit(games.Sprite):
     """
     Exit location
@@ -46,12 +47,12 @@ class Exit(games.Sprite):
             if sprite == self.game.player and self.active:
                 if distance(self, sprite) < 20 and not self.message:
                     message = games.Message(value=self.end_message,
-                                    size=30,
-                                    color=color.white,
-                                    x=games.screen.width/2,
-                                    y=games.screen.height/2,
-                                    lifetime=2 * games.screen.fps,
-                                    after_death=self.game.levelComplete)
+                                            size=30,
+                                            color=color.white,
+                                            x=games.screen.width/2,
+                                            y=games.screen.height/2,
+                                            lifetime=2 * games.screen.fps,
+                                            after_death=self.game.levelComplete)
                     self.message = message
                     games.screen.add(message)
 

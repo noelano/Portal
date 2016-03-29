@@ -4,6 +4,7 @@ from utilities import distance, LOC
 
 games.init(screen_width = 1100, screen_height = 700, fps = 50)
 
+
 class Surface(games.Sprite):
     """
     Surface that portals can be shot onto
@@ -29,7 +30,7 @@ class Surface(games.Sprite):
     def __init__(self, game, x, y):
         """ Initialize the sprite. """
         self.choice = random.randint(0,2)
-        super(Surface, self).__init__(image = Surface.images[self.choice], x = x, y = y, dx = 0, dy = 0)
+        super(Surface, self).__init__(image=Surface.images[self.choice], x=x, y=y, dx=0, dy=0)
         self.game = game
         self.orientation = -1
         self.colour = -1
@@ -42,7 +43,7 @@ class Surface(games.Sprite):
 
         for sprite in self.overlapping_sprites:
             # Don't want to make changes to any other surfaces
-            if (sprite not in self.game.surfaces and sprite not in self.game.neutrinos):
+            if sprite not in self.game.surfaces and sprite not in self.game.neutrinos:
 
                 # Calculate distances to determine where overlap is
                 a = abs(self.bottom - sprite.top)

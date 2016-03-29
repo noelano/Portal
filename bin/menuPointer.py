@@ -1,6 +1,7 @@
 from livewires import games, color
 from utilities import LOC
 
+
 class MenuPointer(games.Sprite):
     """
     Pointer for highlighting and making selections on the game menus
@@ -9,7 +10,7 @@ class MenuPointer(games.Sprite):
 
     def __init__(self, game, x, y, menu):
         """ Initialize the sprite. """
-        super(MenuPointer, self).__init__(image = MenuPointer.image, x = x, y = y, dx = 0, dy = 0)
+        super(MenuPointer, self).__init__(image=MenuPointer.image, x=x, y=y, dx=0, dy=0)
         self.game = game
         self.selection = 0
         self.num_options = len(self.game.options) - 1

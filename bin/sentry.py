@@ -5,6 +5,7 @@ from explosion import *
 import math, random
 from utilities import LOC, GRAVITY, TERMINAL_VELOCITY, AIR_RESISTANCE
 
+
 class Sentry(games.Sprite):
     """ Enemy sentry. Moves randomly and shoots lasers if player is spotted """
 

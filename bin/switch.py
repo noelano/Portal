@@ -2,9 +2,10 @@ from livewires import games
 from utilities import LOC
 from switchBase import *
 
+
 class Switch(games.Sprite):
     """
-    Exit location
+    Button object that can be stepped on to open exit
     """
     image = games.load_image(LOC + r"\..\Images\switch_button.bmp")
 
@@ -19,7 +20,8 @@ class Switch(games.Sprite):
 
     def update(self):
         """ If someone steps on the switch it moves down """
-        stepping_sprites = [x for x in self.overlapping_sprites if x not in self.game.surfaces and x not in self.game.neutrinos]
+        stepping_sprites = [x for x in self.overlapping_sprites if
+                            x not in self.game.surfaces and x not in self.game.neutrinos]
 
         if self.counter != 0 and not stepping_sprites:
             self.counter -= 1

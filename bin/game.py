@@ -8,6 +8,7 @@ from info import *
 from textBox import *
 from badSurface import *
 from sentry import *
+from dispenser import *
 from utilities import loadLevel, LOC
 import os, pickle
 
@@ -182,6 +183,7 @@ class PortalGame():
 
         # Sprite containers
         self.surfaces = []
+        self.cubes = []
         self.neutrinos = []     # React with nothing
 
         layout = loadLevel(LOC + "\\..\\Levels\\level" + str(level) + ".json")
@@ -217,6 +219,11 @@ class PortalGame():
             enemy = Sentry(game=self, x=e[0], y=e[1])
             games.screen.add(enemy)
 
+        if layout[9][0]:
+            dispenser = Dispenser(self, layout[9][0], layout[9][1], layout[10][0], layout[10][1])
+            games.screen.add(dispenser)
+            self.surfaces.append(dispenser)
+
         # Determine which faces are exposed on each surface
         # Portals can only be placed on these sides
         for sprite in self.surfaces:
@@ -235,7 +242,7 @@ class PortalGame():
         """
         End the player controlled game
         """
-        self.records[self.level] = None
+        self.records[self.level + 1] = None
         pickle_file = open(LOC + "\\..\\" + self.fileName, "wb")
         pickle.dump(self.records, pickle_file)
         pickle_file.close()
@@ -251,9 +258,9 @@ class PortalGame():
         Tent entry box to allow the user to enter a name
         """
 
-        box = TextBox(game = self,
-                    x = games.screen.width/2,
-                    y = games.screen.height/2 + 40,)
+        box = TextBox(game=self,
+                      x=games.screen.width/2,
+                      y=games.screen.height/2 + 40,)
         games.screen.add(box)
 
     def gameOver(self):
@@ -262,11 +269,11 @@ class PortalGame():
     def credits(self):
         self.background(self.images[2])
         message = Info("Thank you for participating.",
-                       size = 40,
-                       colour = color.yellow,
-                       x = 550,
-                       y = -100,
-                       lifetime = 20000,
-                       dx = 0,
-                       dy = 0.3)
+                       size=40,
+                       colour=color.yellow,
+                       x=550,
+                       y=-100,
+                       lifetime=20000,
+                       dx=0,
+                       dy=0.3)
         games.screen.add(message)

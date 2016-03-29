@@ -30,7 +30,7 @@ class SentryLOS(games.Sprite):
 
         for sprite in self.overlapping_sprites:
             # Only interact with player or other sentries
-            if sprite not in self.game.surfaces and sprite not in self.game.neutrinos:
+            if sprite not in self.game.surfaces + self.game.neutrinos + self.game.cubes:
                 self.parent.shootLaser()
 
             else:

@@ -31,6 +31,7 @@ class Laser(games.Sprite):
             # Only interact with player or other sentries
             if sprite not in self.game.surfaces and sprite not in self.game.neutrinos:
                 sprite.die()
+                self.destroy()
 
             elif sprite in self.game.surfaces:
                 self.destroy()

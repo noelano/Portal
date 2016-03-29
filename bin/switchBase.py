@@ -1,9 +1,10 @@
 from livewires import games
 from utilities import LOC
 
+
 class SwitchBase(games.Sprite):
     """
-    Exit location
+    Base of switch
     """
     image = games.load_image(LOC + r"\..\Images\switch_base.bmp")
 

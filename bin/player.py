@@ -8,6 +8,7 @@ from utilities import LOC, GRAVITY, TERMINAL_VELOCITY, AIR_RESISTANCE
 # Makes no sense having the init here but it works
 # Must be required the first time a game object is initialised, which happens to be in the player???
 
+
 class Player(games.Sprite):
     """ The player controlled character """
 
@@ -18,7 +19,7 @@ class Player(games.Sprite):
 
     def __init__(self, game, x, y):
         """ Initialize the sprite. """
-        super(Player, self).__init__(image = Player.image1, x = x, y = y, dx = 0, dy = 0)
+        super(Player, self).__init__(image=Player.image1, x=x, y=y, dx=0, dy=0)
         self.game = game
         self.counter = 0    # To control the refresh of the sprite image
         self.reticule = Reticule(self.game, self.x, self.y)
@@ -85,13 +86,13 @@ class Player(games.Sprite):
         """ See if the goal has been reached """
 
         if self.x > games.screen.width:
-            end_message = games.Message(value = "Congratulations",
-                                    size = 90,
-                                    color = color.blue,
-                                    x = games.screen.width/2,
-                                    y = games.screen.height/2,
-                                    lifetime = 1 * games.screen.fps,
-                                    after_death = self.game.endPlayerGame)
+            end_message = games.Message(value="Congratulations",
+                                        size=90,
+                                        color=color.blue,
+                                        x=games.screen.width/2,
+                                        y=games.screen.height/2,
+                                        lifetime=1 * games.screen.fps,
+                                        after_death=self.game.endPlayerGame)
             games.screen.add(end_message)
 
     def calcSpeed(self):
@@ -102,4 +103,4 @@ class Player(games.Sprite):
         games.screen.add(new_explosion)
         self.destroy()
         self.reticule.destroy()
-        #self.game.gameOver()
+        # self.game.gameOver()
