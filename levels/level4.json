@@ -14,5 +14,9 @@
 	"Start":"Apologies, the decorators are late.",
 	"End":"Congratulations on making it without portals.",
 	"Switch_x":0,
-	"Switch_y":0
+	"Switch_y":0,
+	"Dispenser_x":0,
+	"Dispenser_y":0,
+	"Button_x":0,
+	"Button_y":0
 }

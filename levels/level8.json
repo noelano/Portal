@@ -14,5 +14,9 @@
 	"Start":"No mario design was ripped off here",
 	"End":"Admittedly, portal has been extensively ripped off...",
 	"Switch_x":0,
-	"Switch_y":0
+	"Switch_y":0,
+	"Dispenser_x":0,
+	"Dispenser_y":0,
+	"Button_x":0,
+	"Button_y":0
 }
