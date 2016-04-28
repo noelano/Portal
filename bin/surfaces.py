@@ -1,8 +1,9 @@
 from livewires import games
-import random
+import random, pygame
 from utilities import distance, LOC
 
 games.init(screen_width = 1100, screen_height = 700, fps = 50)
+pygame.display.set_mode((1100,700),pygame.FULLSCREEN)
 
 
 class Surface(games.Sprite):

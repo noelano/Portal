@@ -21,7 +21,7 @@ class Reticule(games.Sprite):
         self.baseY = player_y
         self.theta = 0
         self.direction = 1
-        self.x_diff = 30
+        self.x_diff = Reticule.radius
         self.y_diff = 0
         self.timer = 0
 
@@ -44,14 +44,14 @@ class Reticule(games.Sprite):
     def moveUp(self):
         if self.theta < 90:
             self.theta += Reticule.rotation_step
-            self.x_diff = 30 * math.cos(self.theta * math.pi / 180)
-            self.y_diff = 30 * math.sin(self.theta * math.pi / 180)
+            self.x_diff = Reticule.radius * math.cos(self.theta * math.pi / 180)
+            self.y_diff = Reticule.radius * math.sin(self.theta * math.pi / 180)
 
     def moveDown(self):
         if self.theta > -90:
             self.theta -= Reticule.rotation_step
-            self.x_diff = 30 * math.cos(self.theta * math.pi / 180)
-            self.y_diff = 30 * math.sin(self.theta * math.pi / 180)
+            self.x_diff = Reticule.radius * math.cos(self.theta * math.pi / 180)
+            self.y_diff = Reticule.radius * math.sin(self.theta * math.pi / 180)
 
     def movePosition(self, x, y):
         self.baseX = x

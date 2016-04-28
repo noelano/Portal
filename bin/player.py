@@ -26,14 +26,15 @@ class Player(games.Sprite):
         games.screen.add(self.reticule)
         self.game.neutrinos.append(self.reticule)
         self.speed = 0
+        self.held_item = None   # This keeps track of whether we're holding a cube
 
     def update(self):
         """ Move based on keys pressed. """
         self.counter += 1
         self.calcSpeed()
 
-        if (not self.overlapping_sprites or set(self.overlapping_sprites).issubset(self.game.neutrinos)) \
-                and self.dy < TERMINAL_VELOCITY:
+        if (not self.overlapping_sprites or set(self.overlapping_sprites).issubset(self.game.neutrinos) \
+                or [self.held_item] == self.overlapping_sprites) and self.dy < TERMINAL_VELOCITY:
             self.dy += GRAVITY
             self.dx *= AIR_RESISTANCE
 
@@ -74,10 +75,12 @@ class Player(games.Sprite):
 
         # This section controls the reticule actions, including firing, aiming and shooting
         # Shoot portals:
-        if games.keyboard.is_pressed(games.K_a):
-            self.reticule.fireOrange()
-        if games.keyboard.is_pressed(games.K_d):
-            self.reticule.fireBlue()
+        if (not self.reticule.overlapping_sprites or not set(self.reticule.overlapping_sprites).issubset(self.game.cubes)) \
+                and not self.held_item:
+            if games.keyboard.is_pressed(games.K_a):
+                self.reticule.fireOrange()
+            if games.keyboard.is_pressed(games.K_d):
+                self.reticule.fireBlue()
 
         # Change aim
         if games.keyboard.is_pressed(games.K_UP) and not games.keyboard.is_pressed(games.K_SPACE):
