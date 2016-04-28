@@ -37,20 +37,26 @@ class Player(games.Sprite):
             self.dy += GRAVITY
             self.dx *= AIR_RESISTANCE
 
-        if games.keyboard.is_pressed(games.K_LEFT):
+        if games.keyboard.is_pressed(games.K_LEFT) and not games.keyboard.is_pressed(games.K_RIGHT):
             if self.dy == 0:
-                self.dx = -1
+                if self.dx > 0:
+                    self.dx = 0
+                elif self.dx > -1.5:
+                    self.dx -= 0.03
             self.reticule.direction = 0
             if self.image in (Player.image1, Player.image2):
                 self.image = Player.image3
-        if games.keyboard.is_pressed(games.K_RIGHT):
+        if games.keyboard.is_pressed(games.K_RIGHT) and not games.keyboard.is_pressed(games.K_LEFT):
             if self.dy == 0:
-                self.dx = 1
+                if self.dx < 0:
+                    self.dx = 0
+                elif self.dx < 1.5:
+                    self.dx += 0.03
             self.reticule.direction = 1
             if self.image in (Player.image3, Player.image4):
                 self.image = Player.image1
         if self.dy == 0 and games.keyboard.is_pressed(games.K_SPACE):
-            self.dy = -2
+            self.dy = -2.5
         if self.dy == 0 and not (games.keyboard.is_pressed(games.K_RIGHT) or games.keyboard.is_pressed(games.K_LEFT)):
             self.dx = 0
 
@@ -82,19 +88,6 @@ class Player(games.Sprite):
         # Track player position
         self.reticule.movePosition(self.x, self.y)
 
-    def checkWin(self):
-        """ See if the goal has been reached """
-
-        if self.x > games.screen.width:
-            end_message = games.Message(value="Congratulations",
-                                        size=90,
-                                        color=color.blue,
-                                        x=games.screen.width/2,
-                                        y=games.screen.height/2,
-                                        lifetime=1 * games.screen.fps,
-                                        after_death=self.game.endPlayerGame)
-            games.screen.add(end_message)
-
     def calcSpeed(self):
         self.speed = math.sqrt(self.dx**2 + self.dy**2)
 
@@ -103,4 +96,13 @@ class Player(games.Sprite):
         games.screen.add(new_explosion)
         self.destroy()
         self.reticule.destroy()
-        # self.game.gameOver()
+
+        end_message = games.Message(value="Failure",
+                                    size=90,
+                                    color=color.red,
+                                    x=games.screen.width / 2,
+                                    y=games.screen.height / 2,
+                                    lifetime= 3 * games.screen.fps,
+                                    after_death=self.game.gameOver)
+
+        games.screen.add(end_message)

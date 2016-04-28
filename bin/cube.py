@@ -9,6 +9,7 @@ class Cube(games.Sprite):
     Companion cube
     """
     image = games.load_image(LOC + r"\..\Images\cube.bmp")
+    total = 0
 
     def __init__(self, game, x, y):
         """ Initialize the sprite. """
@@ -72,4 +73,5 @@ class Cube(games.Sprite):
         self.speed = math.sqrt(self.dx**2 + self.dy**2)
 
     def die(self):
+        Cube.total -= 1
         self.destroy()

@@ -7,7 +7,7 @@ import os
 LOC = os.getcwd()
 if 'bin' not in LOC:
     LOC += '\\bin'
-GRAVITY = 0.024
+GRAVITY = 0.035
 TERMINAL_VELOCITY = 2.8
 AIR_RESISTANCE = 0.999
 
