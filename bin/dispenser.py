@@ -20,13 +20,14 @@ class Dispenser(Surface):
         self.game.neutrinos.append(self.button)
         self.image = Dispenser.dispenser_image
         self.delay = 0   # Prevents too many cubes from being spawned too quickly
+        self.total = 0   # track the number of cubes in play
 
     def dispense(self):
         """ Spawn a companion cube """
-        if self.delay == 0 and Cube.total < 5:
-            cube = Cube(self.game, self.x, self.y + 80)
+        if self.delay == 0 and self.total < 5:
+            cube = Cube(self.game, self, self.x, self.y + 80)
             games.screen.add(cube)
-            Cube.total += 1
+            self.total += 1
             self.game.cubes.append(cube)
             self.delay = 50
 

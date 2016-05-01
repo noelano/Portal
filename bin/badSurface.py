@@ -13,7 +13,13 @@ class BadSurface(games.Sprite):
 
     def __init__(self, game, x, y):
         """ Initialize the sprite. """
-        self.choice = random.randint(0,2)
+        picker = random.uniform(0,1)
+        if picker > 0.4:
+            self.choice = 0
+        elif picker > 0.2:
+            self.choice = 1
+        else:
+            self.choice = 2
         super(BadSurface, self).__init__(image = BadSurface.images[self.choice], x = x, y = y, dx = 0, dy = 0)
         self.game = game
 

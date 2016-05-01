@@ -2,9 +2,10 @@ from livewires import games
 import random, pygame
 from utilities import distance, LOC
 
-games.init(screen_width = 1100, screen_height = 700, fps = 50)
-pygame.display.set_mode((1100,700),pygame.FULLSCREEN)
-
+# General game properties and setup
+games.init(screen_width=1100, screen_height=700, fps=50)
+pygame.display.set_mode((1100, 700), pygame.FULLSCREEN)
+pygame.mouse.set_visible(False)
 
 class Surface(games.Sprite):
     """
@@ -30,7 +31,13 @@ class Surface(games.Sprite):
 
     def __init__(self, game, x, y):
         """ Initialize the sprite. """
-        self.choice = random.randint(0,2)
+        picker = random.uniform(0,1)
+        if picker > 0.4:
+            self.choice = 0
+        elif picker > 0.2:
+            self.choice = 1
+        else:
+            self.choice = 2
         super(Surface, self).__init__(image=Surface.images[self.choice], x=x, y=y, dx=0, dy=0)
         self.game = game
         self.orientation = -1
@@ -52,6 +59,7 @@ class Surface(games.Sprite):
                 c = abs(self.left - sprite.right)
                 d = abs(self.right - sprite.left)
 
+                # If sprite is falling and portal faces up
                 if self.orientation == 0 and sprite.dy > 0:
                     self.handleTop(sprite)
 
@@ -62,7 +70,7 @@ class Surface(games.Sprite):
                         self.handleRight(sprite)
                     elif a > b:
                         self.handleTop(sprite)
-                    else:
+                    elif b > a:
                         self.handleBottom(sprite)
                 elif sprite.dy < 0 and b > a:
                     if c < a:
@@ -110,7 +118,7 @@ class Surface(games.Sprite):
 
     def handleLeft(self,sprite):
         if self.orientation == 1 and Surface.bluePortal and Surface.orangePortal:
-            if distance(self, sprite) < 10:
+            if abs(self.x - sprite.x) <= 10:
                 if self.colour == 0:
                     self.teleportBlue(sprite)
                 else:
@@ -121,7 +129,7 @@ class Surface(games.Sprite):
 
     def handleRight(self, sprite):
         if self.orientation == 2 and Surface.bluePortal and Surface.orangePortal:
-            if distance(self, sprite) < 10:
+            if abs(self.x - sprite.x) <= 10:
                 if self.colour == 0:
                     self.teleportBlue(sprite)
                 else:
@@ -135,7 +143,7 @@ class Surface(games.Sprite):
             sprite.x = self.x
             if sprite.dy == 0:
                 sprite.dy += 0.5
-            if distance(self, sprite) < 10:
+            if distance(self, sprite) <= 10:
                 if self.colour == 0:
                     self.teleportBlue(sprite)
                 else:
@@ -147,7 +155,7 @@ class Surface(games.Sprite):
     def handleBottom(self, sprite):
         if self.orientation == 3 and Surface.bluePortal and Surface.orangePortal:
             sprite.dy += 0.02
-            if distance(self, sprite) < 10:
+            if distance(self, sprite) <= 10:
                 if self.colour == 0:
                     self.teleportBlue(sprite)
                 else:
@@ -160,7 +168,7 @@ class Surface(games.Sprite):
 
         if Surface.bluePortal.orientation == 0:
             sprite.x = Surface.bluePortal.x
-            sprite.y = Surface.bluePortal.y - 11
+            sprite.y = Surface.bluePortal.y - 12
             # To prevent player constantly falling into two holes
             if self.orientation != 0 or sprite.speed > 0.8:
                 sprite.dx = 0
@@ -170,18 +178,18 @@ class Surface(games.Sprite):
                 sprite.dy = -1
 
         elif Surface.bluePortal.orientation == 1:
-            sprite.x = Surface.bluePortal.x - 11
+            sprite.x = Surface.bluePortal.x - 12
             sprite.bottom = Surface.bluePortal.bottom - 3
             sprite.dy = 0.02
             sprite.dx = -sprite.speed
         elif Surface.bluePortal.orientation == 2:
-            sprite.x = Surface.bluePortal.x + 11
+            sprite.x = Surface.bluePortal.x + 12
             sprite.bottom = Surface.bluePortal.bottom - 3
             sprite.dy = 0.02
             sprite.dx = sprite.speed
         else:
             sprite.x = Surface.bluePortal.x
-            sprite.y = Surface.bluePortal.y + 11
+            sprite.y = Surface.bluePortal.y + 12
             sprite.dx = 0
             sprite.dy = sprite.speed
 
@@ -189,7 +197,7 @@ class Surface(games.Sprite):
 
         if Surface.orangePortal.orientation == 0:
             sprite.x = Surface.orangePortal.x
-            sprite.y = Surface.orangePortal.y - 11
+            sprite.y = Surface.orangePortal.y - 12
             # To prevent player constantly falling into two holes
             if self.orientation != 0 or sprite.speed > 0.7:
                 sprite.dx = 0
@@ -198,18 +206,18 @@ class Surface(games.Sprite):
                 sprite.dx = 1
                 sprite.dy = -1
         elif Surface.orangePortal.orientation == 1:
-            sprite.x = Surface.orangePortal.x - 11
+            sprite.x = Surface.orangePortal.x - 12
             sprite.bottom = Surface.orangePortal.bottom - 3
             sprite.dy = 0.02
             sprite.dx = -sprite.speed
         elif Surface.orangePortal.orientation == 2:
-            sprite.x = Surface.orangePortal.x + 11
+            sprite.x = Surface.orangePortal.x + 12
             sprite.bottom = Surface.orangePortal.bottom - 3
             sprite.dy = 0.02
             sprite.dx = sprite.speed
         else:
             sprite.x = Surface.orangePortal.x
-            sprite.y = Surface.orangePortal.y + 11
+            sprite.y = Surface.orangePortal.y + 12
             sprite.dx = 0
             sprite.dy = sprite.speed
 

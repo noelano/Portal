@@ -10,14 +10,14 @@ class Cube(games.Sprite):
     Companion cube
     """
     image = games.load_image(LOC + r"\..\Images\cube.bmp")
-    total = 0
 
-    def __init__(self, game, x, y):
+    def __init__(self, game, dispenser, x, y):
         """ Initialize the sprite. """
         super(Cube, self).__init__(image=Cube.image, x=x, y=y, dx=0, dy=0)
         self.game = game
         self.speed = 0
         self.counter = 0
+        self.dispenser = dispenser
         self.held = 0   # Keeps track of whether the cube is being held
 
     def update(self):
@@ -25,24 +25,19 @@ class Cube(games.Sprite):
         Act like a surface - user can stand on it and sentries can be blocked by it.
         Behaviour differs depending on whether it's being held or not
         """
+
         if self.counter > 0:
             self.counter -= 1
-        else:
-            self.checkForPickup()
-            self.counter = 15
+
+        self.checkForPickup()
 
         self.freeUpdate()
         if self.held == 1:
             self.followPlayer()
 
-        # Basic approximation of friction - if the cube is touching something, slow lateral movement
-        if self.overlapping_sprites and self.held == 0:
-            if self.dx > 0:
-                self.dx -= 0.1
-            elif self.dx < 0:
-                self.dx += 0.1
-            elif -0.1 <= self.dx <= 0.1:
-                self.dx = 0
+        # If cube is not held and not falling, set dx = 0
+        if self.dy == 0 and self.held == 0:
+            self.dx = 0
 
         self.calcSpeed()
 
@@ -59,14 +54,13 @@ class Cube(games.Sprite):
         sprite.bottom = self.top + 1
 
     def handleBottom(self, sprite):
-        sprite.dy = 0
-        sprite.top = self.bottom
+        self.bottom = sprite.top
 
     def calcSpeed(self):
         self.speed = math.sqrt(self.dx**2 + self.dy**2)
 
     def die(self):
-        Cube.total -= 1
+        self.dispenser.total -= 1
         self.destroy()
 
     def checkForPickup(self):
@@ -75,19 +69,21 @@ class Cube(games.Sprite):
         Note that this is only performed once every 15 frames
         Similar to checks in the text entry box
         """
-        if self.game.player.reticule in self.overlapping_sprites and (games.keyboard.is_pressed(games.K_a) \
-                or games.keyboard.is_pressed(games.K_d)):
-            if self.held == 0:
-                self.game.player.held_item = self
-                self.held = 1
-            else:
-                self.game.player.held_item = None
-                self.held = 0
+        if self.counter == 0:
+            if self.game.player.reticule in self.overlapping_sprites and (games.keyboard.is_pressed(games.K_a) \
+                    or games.keyboard.is_pressed(games.K_d)):
+                self.counter = 15
+                if self.held == 0:
+                    self.game.player.held_item = self
+                    self.held = 1
+                    self.y = self.game.player.y
+                else:
+                    self.game.player.held_item = None
+                    self.held = 0
 
     def freeUpdate(self):
         """ Standard update """
-        if (not self.overlapping_sprites or set(self.overlapping_sprites).issubset(self.game.neutrinos)) \
-                and self.dy < TERMINAL_VELOCITY and self.held == 0:
+        if self.checkBottom() and self.dy < TERMINAL_VELOCITY and self.held == 0:
             self.dy += GRAVITY
             self.dx *= AIR_RESISTANCE
 
@@ -131,5 +127,21 @@ class Cube(games.Sprite):
             self.left = self.game.player.right + 2
         else:
             self.right = self.game.player.left - 2
+        self.dx = self.game.player.dx
         self.dy = self.game.player.dy
+        if self.game.player.dy == 0:
+            self.y = self.game.player.y - 5
 
+    def checkBottom(self):
+        """ See if the bottom is exposed """
+        exposed = True
+        for sprite in self.overlapping_sprites:
+            if sprite not in self.game.neutrinos:
+                a = abs(self.bottom - sprite.top)
+                b = abs(self.top - sprite.bottom)
+                c = abs(self.left - sprite.right)
+                d = abs(self.right - sprite.left)
+                if a < b and a < c and a < d:
+                    exposed = False
+                    break
+        return exposed
