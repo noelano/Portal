@@ -178,12 +178,12 @@ class Surface(games.Sprite):
                 sprite.dy = -1
 
         elif Surface.bluePortal.orientation == 1:
-            sprite.x = Surface.bluePortal.x - 12
+            sprite.left = Surface.bluePortal.left - 8
             sprite.bottom = Surface.bluePortal.bottom - 3
             sprite.dy = 0.02
             sprite.dx = -sprite.speed
         elif Surface.bluePortal.orientation == 2:
-            sprite.x = Surface.bluePortal.x + 12
+            sprite.right = Surface.bluePortal.right + 8
             sprite.bottom = Surface.bluePortal.bottom - 3
             sprite.dy = 0.02
             sprite.dx = sprite.speed
@@ -206,12 +206,12 @@ class Surface(games.Sprite):
                 sprite.dx = 1
                 sprite.dy = -1
         elif Surface.orangePortal.orientation == 1:
-            sprite.x = Surface.orangePortal.x - 12
+            sprite.left = Surface.orangePortal.left - 8
             sprite.bottom = Surface.orangePortal.bottom - 3
             sprite.dy = 0.02
             sprite.dx = -sprite.speed
         elif Surface.orangePortal.orientation == 2:
-            sprite.x = Surface.orangePortal.x + 12
+            sprite.right = Surface.orangePortal.right + 8
             sprite.bottom = Surface.orangePortal.bottom - 3
             sprite.dy = 0.02
             sprite.dx = sprite.speed

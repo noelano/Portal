@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0ef27247-248f-42d0-b62c-1177e2bf030d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Images/dispenser.bmp" afterPath="$PROJECT_DIR$/Images/dispenser.bmp" />
+    <list default="true" id="0ef27247-248f-42d0-b62c-1177e2bf030d" name="Default" comment="Unheld cubes can be pushed around">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/menuPointer.py" afterPath="$PROJECT_DIR$/bin/menuPointer.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/cube.py" afterPath="$PROJECT_DIR$/bin/cube.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/sentry.py" afterPath="$PROJECT_DIR$/bin/sentry.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/sentryLOS.py" afterPath="$PROJECT_DIR$/bin/sentryLOS.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/surfaces.py" afterPath="$PROJECT_DIR$/bin/surfaces.py" />
     </list>
     <ignored path="Portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,8 +41,8 @@
       <file leaf-file-name="cube.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/cube.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="55" column="35" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
+            <state relative-caret-position="91">
+              <caret line="141" column="4" selection-start-line="141" selection-start-column="4" selection-end-line="153" selection-end-column="22" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -63,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="menuPointer.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="menuPointer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bin/menuPointer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="75" column="26" selection-start-line="75" selection-start-column="26" selection-end-line="75" selection-end-column="26" />
+            <state relative-caret-position="326">
+              <caret line="79" column="34" selection-start-line="79" selection-start-column="34" selection-end-line="79" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -88,8 +87,8 @@
       <file leaf-file-name="surfaces.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/surfaces.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state relative-caret-position="221">
+              <caret line="131" column="44" selection-start-line="131" selection-start-column="44" selection-end-line="131" selection-end-column="44" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -100,8 +99,8 @@
       <file leaf-file-name="sentry.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/sentry.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="479">
-              <caret line="119" column="28" selection-start-line="119" selection-start-column="28" selection-end-line="119" selection-end-column="28" />
+            <state relative-caret-position="119">
+              <caret line="34" column="11" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -109,7 +108,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sentryLOS.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sentryLOS.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/sentryLOS.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="268">
@@ -154,11 +153,11 @@
         <option value="$PROJECT_DIR$/bin/player.py" />
         <option value="$PROJECT_DIR$/bin/badSurface.py" />
         <option value="$PROJECT_DIR$/bin/dispenser.py" />
-        <option value="$PROJECT_DIR$/bin/cube.py" />
+        <option value="$PROJECT_DIR$/bin/sentryLOS.py" />
         <option value="$PROJECT_DIR$/bin/menuPointer.py" />
+        <option value="$PROJECT_DIR$/bin/cube.py" />
         <option value="$PROJECT_DIR$/bin/sentry.py" />
         <option value="$PROJECT_DIR$/bin/surfaces.py" />
-        <option value="$PROJECT_DIR$/bin/sentryLOS.py" />
       </list>
     </option>
   </component>
@@ -596,7 +595,14 @@
       <option name="project" value="LOCAL" />
       <updated>1462116156308</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Stop sentries shooting each other">
+      <created>1462125141275</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1462125141275</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -678,7 +684,8 @@
     <MESSAGE value="Return to level menu after player death; limit number of companion cubes&#10;" />
     <MESSAGE value="Fullscreen mode; cubes can be picked up&#10;" />
     <MESSAGE value="Bug fix for falling cubes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug fix for falling cubes" />
+    <MESSAGE value="Stop sentries shooting each other" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stop sentries shooting each other" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1053,18 +1060,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/menuPointer.py">
+    <entry file="file://$PROJECT_DIR$/bin/sentryLOS.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="75" column="26" selection-start-line="75" selection-start-column="26" selection-end-line="75" selection-end-column="26" />
+        <state relative-caret-position="268">
+          <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bin/cube.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="55" column="35" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
+        <state relative-caret-position="91">
+          <caret line="141" column="4" selection-start-line="141" selection-start-column="4" selection-end-line="153" selection-end-column="22" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
@@ -1073,8 +1080,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bin/sentry.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="119" column="28" selection-start-line="119" selection-start-column="28" selection-end-line="119" selection-end-column="28" />
+        <state relative-caret-position="119">
+          <caret line="34" column="11" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
@@ -1083,18 +1090,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bin/surfaces.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        <state relative-caret-position="221">
+          <caret line="131" column="44" selection-start-line="131" selection-start-column="44" selection-end-line="131" selection-end-column="44" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/sentryLOS.py">
+    <entry file="file://$PROJECT_DIR$/bin/menuPointer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
+        <state relative-caret-position="326">
+          <caret line="79" column="34" selection-start-line="79" selection-start-column="34" selection-end-line="79" selection-end-column="34" />
           <folding />
         </state>
       </provider>

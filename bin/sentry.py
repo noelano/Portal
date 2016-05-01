@@ -32,7 +32,7 @@ class Sentry(games.Sprite):
         self.counter += 1
         self.calcSpeed()
 
-        if not self.overlapping_sprites and self.dy < TERMINAL_VELOCITY:
+        if self.checkBottom() and self.dy < TERMINAL_VELOCITY:
             self.dy += GRAVITY
             self.dx *= AIR_RESISTANCE
 
@@ -118,3 +118,17 @@ class Sentry(games.Sprite):
                 self.dx = 1
             elif self.right > surfs[0].right + 1:
                 self.dx = -1
+
+    def checkBottom(self):
+        """ See if the bottom is exposed """
+        exposed = True
+        for sprite in self.overlapping_sprites:
+            if sprite not in self.game.neutrinos:
+                a = abs(self.bottom - sprite.top)
+                b = abs(self.top - sprite.bottom)
+                c = abs(self.left - sprite.right)
+                d = abs(self.right - sprite.left)
+                if a < b and a < c and a < d:
+                    exposed = False
+                    break
+        return exposed

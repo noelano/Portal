@@ -42,12 +42,18 @@ class Cube(games.Sprite):
         self.calcSpeed()
 
     def handleLeft(self, sprite):
-        sprite.dx = 0
-        sprite.right = self.left - 1
+        if self.held:
+            sprite.dx = 0
+            sprite.right = self.left - 1
+        else:
+            self.left = sprite.right + 1
 
     def handleRight(self, sprite):
-        sprite.dx = 0
-        sprite.left = self.right + 1
+        if self.held:
+            sprite.dx = 0
+            sprite.left = self.right + 1
+        else:
+            self.right = sprite.left - 1
 
     def handleTop(self, sprite):
         sprite.dy = 0
@@ -88,7 +94,8 @@ class Cube(games.Sprite):
             self.dx *= AIR_RESISTANCE
 
         # If the cube gets too far above / below the player, they have to drop it
-        if self.held == 1 and (self.y > self.game.player.y + 30 or self.y < self.game.player.y - 30):
+        if self.held == 1 and ((self.y > self.game.player.y + 30 or self.y < self.game.player.y - 30) \
+                or (abs(self.x - self.game.player.x) > 60)):
             self.held = 0
             self.game.player.held_item = None
 
