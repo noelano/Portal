@@ -36,9 +36,10 @@ class Sentry(games.Sprite):
             self.dy += GRAVITY
             self.dx *= AIR_RESISTANCE
 
-        # Every half second spawn an LOS object to 'look'
+        # Every half second spawn an LOS object to 'look' (And check if about to fall)
         if self.counter % 25 == 0:
             self.look()
+            self.checkSurroundings()
 
         # As long as the sprite is not falling, move randomly to left or right
         if self.dy == 0 and self.counter % 50 == 0:
@@ -107,3 +108,13 @@ class Sentry(games.Sprite):
             laser = Laser(self.game, self.left - 16, self.y, -12)
         games.screen.add(laser)
         self.game.neutrinos.append(laser)
+
+    def checkSurroundings(self):
+        """ Check is the sprite is about to walk off a ledge / into a wall """
+
+        surfs = [x for x in self.overlapping_sprites if x in self.game.surfaces]
+        if len(surfs) == 1:
+            if self.left < surfs[0].left - 1:
+                self.dx = 1
+            elif self.right > surfs[0].right + 1:
+                self.dx = -1

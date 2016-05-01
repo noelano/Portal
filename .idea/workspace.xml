@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ef27247-248f-42d0-b62c-1177e2bf030d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/levels/testLevel.json" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Images/badSurface2.bmp" afterPath="$PROJECT_DIR$/Images/badSurface2.bmp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Images/badSurface3.bmp" afterPath="$PROJECT_DIR$/Images/badSurface3.bmp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Images/surface1.bmp" afterPath="$PROJECT_DIR$/Images/surface1.bmp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Images/surface2.bmp" afterPath="$PROJECT_DIR$/Images/surface2.bmp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Images/dispenser.bmp" afterPath="$PROJECT_DIR$/Images/dispenser.bmp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/badSurface.py" afterPath="$PROJECT_DIR$/bin/badSurface.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/cube.py" afterPath="$PROJECT_DIR$/bin/cube.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/dispenser.py" afterPath="$PROJECT_DIR$/bin/dispenser.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/menuPointer.py" afterPath="$PROJECT_DIR$/bin/menuPointer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/surfaces.py" afterPath="$PROJECT_DIR$/bin/surfaces.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/sentry.py" afterPath="$PROJECT_DIR$/bin/sentry.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/sentryLOS.py" afterPath="$PROJECT_DIR$/bin/sentryLOS.py" />
     </list>
     <ignored path="Portal.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cube.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cube.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/cube.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="144" column="24" selection-start-line="144" selection-start-column="24" selection-end-line="144" selection-end-column="24" />
+            <state relative-caret-position="171">
+              <caret line="55" column="35" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -72,18 +66,8 @@
       <file leaf-file-name="menuPointer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/menuPointer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1326">
-              <caret line="79" column="34" selection-start-line="79" selection-start-column="34" selection-end-line="79" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="utilities.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/utilities.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+            <state relative-caret-position="258">
+              <caret line="75" column="26" selection-start-line="75" selection-start-column="26" selection-end-line="75" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -101,11 +85,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="reticule.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/reticule.py">
+      <file leaf-file-name="surfaces.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bin/surfaces.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -113,14 +97,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="surfaces.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/surfaces.py">
+      <file leaf-file-name="sentry.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bin/sentry.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="231" column="12" selection-start-line="231" selection-start-column="12" selection-end-line="236" selection-end-column="48" />
+            <state relative-caret-position="479">
+              <caret line="119" column="28" selection-start-line="119" selection-start-column="28" selection-end-line="119" selection-end-column="28" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sentryLOS.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bin/sentryLOS.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="268">
+              <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -151,9 +145,7 @@
         <option value="$PROJECT_DIR$/bin/switchBase.py" />
         <option value="$PROJECT_DIR$/bin/switch.py" />
         <option value="$PROJECT_DIR$/bin/exit.py" />
-        <option value="$PROJECT_DIR$/bin/sentry.py" />
         <option value="$PROJECT_DIR$/bin/button.py" />
-        <option value="$PROJECT_DIR$/bin/sentryLOS.py" />
         <option value="$PROJECT_DIR$/bin/laser.py" />
         <option value="$PROJECT_DIR$/bin/game.py" />
         <option value="$PROJECT_DIR$/bin/utilities.py" />
@@ -161,10 +153,12 @@
         <option value="$PROJECT_DIR$/levels/level13.json" />
         <option value="$PROJECT_DIR$/bin/player.py" />
         <option value="$PROJECT_DIR$/bin/badSurface.py" />
-        <option value="$PROJECT_DIR$/bin/surfaces.py" />
         <option value="$PROJECT_DIR$/bin/dispenser.py" />
-        <option value="$PROJECT_DIR$/bin/menuPointer.py" />
         <option value="$PROJECT_DIR$/bin/cube.py" />
+        <option value="$PROJECT_DIR$/bin/menuPointer.py" />
+        <option value="$PROJECT_DIR$/bin/sentry.py" />
+        <option value="$PROJECT_DIR$/bin/surfaces.py" />
+        <option value="$PROJECT_DIR$/bin/sentryLOS.py" />
       </list>
     </option>
   </component>
@@ -595,7 +589,14 @@
       <option name="project" value="LOCAL" />
       <updated>1461866676417</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Bug fix for falling cubes">
+      <created>1462116156308</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1462116156308</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -604,16 +605,16 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18374817" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39905363" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -676,7 +677,8 @@
     <MESSAGE value="Level update&#10;" />
     <MESSAGE value="Return to level menu after player death; limit number of companion cubes&#10;" />
     <MESSAGE value="Fullscreen mode; cubes can be picked up&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fullscreen mode; cubes can be picked up&#10;" />
+    <MESSAGE value="Bug fix for falling cubes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug fix for falling cubes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1007,20 +1009,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/sentry.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/sentryLOS.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="32" column="87" selection-start-line="32" selection-start-column="87" selection-end-line="32" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/reticule.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1058,14 +1046,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/menuPointer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1326">
-          <caret line="79" column="34" selection-start-line="79" selection-start-column="34" selection-end-line="79" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/switch.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -1073,23 +1053,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/surfaces.py">
+    <entry file="file://$PROJECT_DIR$/bin/menuPointer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="231" column="12" selection-start-line="231" selection-start-column="12" selection-end-line="236" selection-end-column="48" />
+        <state relative-caret-position="258">
+          <caret line="75" column="26" selection-start-line="75" selection-start-column="26" selection-end-line="75" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/cube.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="55" column="35" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/cube.py">
+    <entry file="file://$PROJECT_DIR$/bin/sentry.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="144" column="24" selection-start-line="144" selection-start-column="24" selection-end-line="144" selection-end-column="24" />
+        <state relative-caret-position="479">
+          <caret line="119" column="28" selection-start-line="119" selection-start-column="28" selection-end-line="119" selection-end-column="28" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/surfaces.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/sentryLOS.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
