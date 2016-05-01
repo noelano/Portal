@@ -118,7 +118,7 @@ class Surface(games.Sprite):
 
     def handleLeft(self,sprite):
         if self.orientation == 1 and Surface.bluePortal and Surface.orangePortal:
-            if abs(self.x - sprite.x) <= 10:
+            if abs(self.left - sprite.left) <= 2:
                 if self.colour == 0:
                     self.teleportBlue(sprite)
                 else:
@@ -129,7 +129,7 @@ class Surface(games.Sprite):
 
     def handleRight(self, sprite):
         if self.orientation == 2 and Surface.bluePortal and Surface.orangePortal:
-            if abs(self.x - sprite.x) <= 10:
+            if abs(self.right - sprite.right) <= 2:
                 if self.colour == 0:
                     self.teleportBlue(sprite)
                 else:

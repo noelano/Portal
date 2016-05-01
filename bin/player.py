@@ -42,7 +42,7 @@ class Player(games.Sprite):
             if self.dy == 0:
                 if self.dx > 0:
                     self.dx = 0
-                elif self.dx > -1.5:
+                elif self.dx > -1.6:
                     self.dx -= 0.03
             self.reticule.direction = 0
             if self.image in (Player.image1, Player.image2):
@@ -51,7 +51,7 @@ class Player(games.Sprite):
             if self.dy == 0:
                 if self.dx < 0:
                     self.dx = 0
-                elif self.dx < 1.5:
+                elif self.dx < 1.6:
                     self.dx += 0.03
             self.reticule.direction = 1
             if self.image in (Player.image3, Player.image4):

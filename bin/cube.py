@@ -60,6 +60,7 @@ class Cube(games.Sprite):
         sprite.bottom = self.top + 1
 
     def handleBottom(self, sprite):
+        self.dy = 0
         self.bottom = sprite.top
 
     def calcSpeed(self):
